@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IF=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak - Dywane Hyundai</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .header {
+            font-size: 2em;
+            color: #374a67;
+            margin-bottom: 10px;
+        }
+
+        h1, h2, h3 {
+            color: #fff;
+            opacity: 1;
+            animation: fadeInUp 1s forwards;
+        }
+        
+        .sub-header {
+            color: #666;
+            font-size: 1em;
+            margin-bottom:80px;
+        }
+        
+        .info-cards {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background-color: #dee5ec;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            height: 200px;
+            text-align: center;
+        }
+        
+        .card img {
+            width: 40px;
+            margin-bottom: 10px;
+            margin-top:40px;
+        }
+        
+        .card h3 {
+            color: #374a67;
+            margin: 10px 0;
+        }
+        
+        .card p {
+            color: #333;
+            font-size: 0.9em;
+        }
+        
+        .contact-wrapper {
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+            padding: 20px;
+            flex-wrap: wrap; 
+        }
+
+        .contact-form {
+            background-color: #1d1d3f;
+            padding: 30px;
+            border-radius: 10px;
+            color: #fff;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .contact-form input, .contact-form textarea, .contact-form button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+        
+        .contact-form input, .contact-form textarea {
+            color: #333;
+        }
+        
+        .contact-form button {
+            background-color: #ff9900;
+            color: #fff;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .branches {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: left;
+            max-width: 300px;
+            margin: 30px auto;
+        }
+        
+        .branch {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .branch h4 {
+            color: #374a67;
+            margin-bottom: 5px;
+        }
+        
+        .social-icons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: #dee5ec; 
+            border-radius: 50%; 
+            text-decoration: none;
+            color: #374a67; 
+        }
+
+        .social-icons a img {
+            width: 18px;
+            height: 18px;
+        }
+
+        .map {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .locations {
+            display: flex;
+            justify-content: space-between;
+        }
+        .location {
+            flex: 1;
+            margin: 10px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .info-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .info-cards .card {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .contact-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .branches {
+                max-width: 100%;
+            }
+
+            .branch {
+                width: 100%;
+            }
+
+            .contact-form {
+                max-width: 100%;
+            }
+        }
+
+        @media screen and (min-width: 769px) and (max-width: 1024px) {
+            .info-cards {
+                flex-direction: row;
+                justify-content: space-around;
+            }
+
+            .contact-wrapper {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .branches {
+                max-width: 100%;
+            }
+
+            .branch {
+                width: 45%;
+            }
+
+            .contact-form {
+                max-width: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h2 class="logo">Dywane</h2>
+        <nav class="navigation">
+            <a href="index.html">Home</a>
+            <a href="products.html">Produk</a>
+            <a href="contact.html">Kontak</a>
+            <a href="https://wa.me/+6282291331505">
+                <button class="btnlogin-popup">Tanya</button>
+            </a>
+        </nav>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="mobile-nav" id="mobileNav">
+            <a href="index.html">Home</a>
+            <a href="products.html">Produk</a>
+            <a href="contact.html">Kontak</a>
+            <a href="https://wa.me/+6282291331595">
+                <button class="btnlogin-popup">Tanya</button>
+            </a>
+        </div>
+    </header>
+
+<div class="container">
+    <h1 style="padding-top: 150px; padding-bottom: 20px; font-size: 28px;" class="header">Kontak</h1>
+    <p class="sub-header">
+        Hubungi saya sekarang. Saya siap membantu menjawab setiap pertanyaan Anda dan memberikan informasi yang Anda butuhkan! <br>
+        Jangan ragu untuk menghubungi saya-saya akan dengan senang hati menjawab pertanyaan Anda!
+            
+    </p>
+
+
+    <div class="contact-wrapper">
+        <div class="contact-form">
+            <h2>Kirim Pesanmu</h2>
+            <form action="mailto:dywanehyundai@gmail.com" method="post" enctype="text/plain">
+                <input type="text" name="name" placeholder="Nama" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="text" name="subject" placeholder="Subjek">
+                <textarea name="message" placeholder="Pesan" rows="4" required></textarea>
+                <button type="submit">Kirim Pesan</button>
+            </form>
+        </div>        
+    
+        <div class="social-icons">
+            <a href="https://www.instagram.com/dywanehyundai?igsh=bnJjNTI1ZThzOHB6"><img src="img/instagram.png"></a>
+            <a href="https://wa.me/+6282291331595"><img src="img/whatsapp.png"></a>
+        </div>
+    
+        <div class="branches">
+            <div class="branch">
+                <h4 style="margin-bottom:18px;">Cabang 01</h4>
+                <p><strong>Address:</strong> Jl. Kutisari 10, Surabaya</p>
+                <p><strong>Telephone:</strong> (+62) 822 9133 1505</p>
+            </div>
+            <div class="branch">
+                <h4 style="margin-bottom:18px;">Cabang 02</h4>
+                <p><strong>Address:</strong> Galaxy Mall 3, G-342 Surabaya</p>
+                <p><strong>Telephone:</strong> (+62) 822 9133 1505</p>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="locations">
+        <div class="location">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.2150264590127!2d112.74084887548773!3d-7.329730292678602!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fb3e8791fd25%3A0x97c96e4059756f67!2sHyundai%20Jemur%20Andayani%20Official!5e0!3m2!1sen!2sid!4v1738690131858!5m2!1sen!2sid" width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="location">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.6810713066475!2d112.7753706967896!3d-7.277083599999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fb7165ef1907%3A0x2918203cbce43b15!2sHyundai%20-%20Galaxy%20Mall%203!5e0!3m2!1sen!2sid!4v1738690262664!5m2!1sen!2sid" width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleMenu() {
+        var mobileNav = document.getElementById("mobileNav");
+        if (mobileNav.style.display === "flex") {
+            mobileNav.style.display = "none";
+        } else {
+            mobileNav.style.display = "flex";
+        }
+    }
+</script>
+
+<footer style="background-color: #2a2f37; color: #dee5ec; padding: 20px 0; text-align: center; font-family: Arial, sans-serif;">
+    <div style="max-width: 1200px; margin: auto; padding: 0 20px;">
+        <h2 style="color: #dee5ec; margin-bottom: 10px;">Dywane Hyundai</h2>
+        <p style="margin: 0; font-size: 14px; color: #7e8790;">Memberikan penawaran terbaik untuk mobil Hyundai impian Anda</p>
+
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; margin-top: 20px; color: #dee5ec;">
+            <div style="flex: 1; min-width: 200px; margin: 10px 0;">
+                <h3 style="color: #dee5ec; font-size: 16px; border-bottom: 2px solid #374a67; padding-bottom: 5px; display: inline-block;">Kontak Saya</h3>
+                <p style="margin: 5px 0; color: #7e8790;">Email: <a href="mailto:dealerxyz@email.com" style="color: #dee5ec; text-decoration: none;">dywanehyundai@email.com</a></p>
+                <p style="margin: 5px 0; color: #7e8790;">No. Telp/WhatsApp: <a href="https://wa.me/+6282291331505" style="color: #dee5ec; text-decoration: none;">+62 822 9133 1505</a></p>
+            </div>
+
+            <div style="flex: 1; min-width: 200px; margin: 10px 0;">
+                <h3 style="color: #dee5ec; font-size: 16px; border-bottom: 2px solid #374a67; padding-bottom: 5px; display: inline-block;">Lokasi</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+                    <!-- Cabang Kutisari -->
+                    <div style="flex: 1; min-width: 200px;">
+                        <p style="margin: 5px 0;">
+                            <a style="color: #dee5ec; text-decoration: none; margin: 0 5px;">Jl. Kutisari 10, Surabaya</a>
+                        </p>
+                        <p style="margin: 5px 0; color: #7e8790;">Senin - Jumat: 08.30 - 17.00</p>
+                        <p style="margin: 5px 0; color: #7e8790;">Sabtu: 08.30 - 15.00</p>
+                    </div>
+            
+                    <!-- Cabang Galaxy Mall -->
+                    <div style="flex: 1; min-width: 200px;">
+                        <p style="margin: 5px 0;">
+                            <a style="color: #dee5ec; text-decoration: none; margin: 0 5px;">Galaxy Mall 3, G-342 Surabaya</a>
+                        </p>
+                        <p style="margin: 5px 0; color: #7e8790;">Senin - Minggu: 08.00 - 21.30</p>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div style="flex: 1; min-width: 200px; margin: 10px 0;">
+                <h3 style="color: #dee5ec; font-size: 16px; border-bottom: 2px solid #374a67; padding-bottom: 5px; display: inline-block;">Sosial Media</h3>
+                <p style="margin: 5px 0;">
+                    <a href="https://www.instagram.com/dywanehyundai?igsh=bnJjNTI1ZThzOHB6" style="color: #dee5ec; text-decoration: none; margin: 0 5px;">Instagram</a>
+                </p>
+            </div>
+        </div>
+
+        <hr style="border-color: #374a67; margin: 20px 0;">
+        
+        <p style="font-size: 12px; color: #7e8790;">&copy; 2025 Dywane. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

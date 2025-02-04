@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Produk</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+        /* Main container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Back button */
+        .back-button {
+            position:relative;
+            margin-top: 20px;
+            margin-left: 50px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        .back-button a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+        .back-button a:hover {
+            color: #374a67;
+        }
+
+        /* Product details header */
+        #product-name {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        #product-description {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        #product-name-image {
+            width: 100%; /* Gambar akan menyesuaikan lebar container */
+            height: auto; /* Menjaga proporsi gambar */
+            display: block; /* Menghindari whitespace ekstra */
+            margin: 0 auto; /* Pusatkan gambar */
+        }
+
+        #product-name {
+            visibility: hidden;
+        }
+
+        /* Product gallery */
+        #product-gallery {
+            margin-bottom: 30px;
+        }
+        #product-gallery h3 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .gallery {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+        .gallery img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Main Features */
+        #product-features {
+            margin-bottom: 30px;
+        }
+        #product-features h3 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        #feature-list {
+            list-style: none;
+            padding-left: 20px;
+        }
+        #feature-list li {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        /* Color Options */
+        #color-options {
+            margin-bottom: 30px;
+        }
+        #color-options h3 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .color-selection {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .color-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .color-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Price Table */
+        #price-table {
+            margin-top: 40px;
+        }
+        #price-table h3 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table th, table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        table th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+        #color-container {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        #color-title {
+            font-weight: bold;
+            font-size: 16px;
+            color: #001F4D; /* Warna biru gelap */
+        }
+
+        #selected-color-name {
+            font-weight: bold;
+            font-size: 14px;
+            color: #001F4D;
+        }
+
+        #color-selection {
+            display: flex;
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        .color-box {
+            width: 40px;
+            height: 40px;
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            position: relative;
+            border-radius: 5px;
+        }
+
+        .color-box.selected {
+            border: 2px solid #374a67;
+            position: relative;
+        }
+
+        .color-box .checkmark {
+            display: none;
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            background-color: #374a67;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 20px;
+            border-radius: 50%;
+        }
+
+        .color-box.selected .checkmark {
+            display: block;
+        }
+        .features-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .feature {
+            text-align: left;
+        }
+
+        .feature img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .feature h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .feature p {
+            font-size: 14px;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .features-container {
+                grid-template-columns: 1fr;
+            }
+
+            .back-button {
+                margin-left: 13px;
+                font-size: 16px;
+            }
+
+        }
+
+        #bluelink-container {
+            text-align: center; /* Menyusun gambar di tengah secara horizontal */
+            margin-top: 20px; /* Memberikan jarak dari elemen di atasnya */
+        }
+
+        #bluelink-image {
+            width: 500px; /* Ukuran gambar lebih kecil, Anda bisa menyesuaikan sesuai kebutuhan */
+            height: auto; /* Mempertahankan rasio aspek gambar */
+            display: block; /* Menghilangkan margin default gambar */
+            margin: 0 auto; /* Menempatkan gambar di tengah secara horizontal */
+        }
+
+        #car-title, #car-description {
+            text-align: center;
+        }
+
+        #car-title {
+            margin-top: 30px;
+            margin-bottom: 8px;
+        }
+
+        #car-description {
+            margin-bottom: 50px;
+        }
+
+        #whatsapp-button {
+            display: flex;
+            align-items: center;
+            background-color: #25d366;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: fit-content;
+            margin-top: 20px;
+        }
+
+        #whatsapp-button:hover {
+            background-color: #128c7e;
+            transform: scale(1.05);
+        }
+
+        .whatsapp-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        #whatsapp-button:focus {
+            outline: none;
+        }
+
+        /* Center the button container */
+        .whatsapp-button-container {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            margin-top: 20px; /* Optional: space between price table and button */
+            margin-bottom: 50px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="back-button">
+        <a href="products.html">← Kembali ke Produk</a>
+    </div>
+
+    <div class="section">
+        <div id="product-name-container">
+            <img id="product-name-image" src="" alt="Product Image">
+        </div>
+        <p id="product-name"></p>
+    </div>
+    <div class="container">
+
+        <!-- Dynamic Title and Description -->
+        <h1 id="car-title"></h1>
+        <p id="car-description"></p>
+
+        <!-- Main Features -->
+        <div class="features-container" id="features-container"></div>
+
+        <!-- BlueLink Section (will be shown for specific car types) -->
+        <section id="bluelink-container" style="display: none;">
+            <img id="bluelink-image" src="img/bluelink.png" alt="BlueLink">
+        </section>
+
+        <!-- Color Options -->
+        <section id="color-container">
+            <h3>Warna Exterior</h3>
+            <p id="selected-color-name"></p> <!-- Warna default -->
+            <div id="color-selection"></div>
+        </section>
+
+        <!-- Price Table -->
+        <section id="price-table">
+            <h3>Harga</h3>
+            <table>
+                <tr>
+                    <th>Variant</th>
+                    <th>Price</th>
+                </tr>
+                <!-- Harga akan ditambahkan di sini -->
+            </table>
+
+            <!-- Wrapper for the button -->
+            <div class="whatsapp-button-container">
+                <button id="whatsapp-button">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
+                    Saya tertarik dan ingin mendapatkan info lebih lanjut
+                </button>
+            </div>
+
+        </section>
+
+    </div>
+
+    <script>
+        const carFeatures = {
+            "Palisade": [
+                { 
+                    title: "Kuat namun Elegan", 
+                    description: "Desain baru bumper depan serba hitam yang meningkatkan gaya dan fungsionalitasnya", 
+                    image: "img/palisade1.jpg" 
+                },
+                { 
+                    title: "Eksterior yang Mencolok", 
+                    description: "Emblem XRT yang baru mewakili perpaduan unik antara desain dan performa", 
+                    image: "img/palisade2.jpg" 
+                },
+                { 
+                    title: "Tampilan Baru yang Berani", 
+                    description: "Rel atap hitam yang dirancang baru memadukan fungsionalitas dan gaya, meningkatkan keanggunan kokoh SUV ini", 
+                    image: "img/palisade3.jpg" 
+                },
+                { 
+                    title: "Lebih Berani", 
+                    description: "Menampilkan desain serba hitam dengan velg 20 inci untuk meningkatkan kesan agresif dan pengendalian, memastikan perjalanan yang halus dan penuh kepercayaan diri", 
+                    image: "img/palisade4.jpg" 
+                }
+            ],
+            "Ioniq 6": [
+                { 
+                    title: "Lampu Depan LED Proyektor Ganda", 
+                    description: "Lampu yang ideal untuk kenyamanan dan keamanan berkendara", 
+                    image: "img/ioniq61.png" 
+                },
+                { 
+                    title: "Emblem Hyundai Baru", 
+                    description: "Emblem Hyundai baru hadir untuk menambah keindahan exterior mobil", 
+                    image: "img/ioniq62.png" 
+                },
+                { 
+                    title: "Parametric Pixel High-mounted Stop Lamp", 
+                    description: "Meningkatkan visibilitas, respons pengereman lebih cepat, hemat energi, dan memberikan tampilan futuristik yang ikonik", 
+                    image: "img/ioniq63.png" 
+                },
+                { 
+                    title: "Shark Fin Antenna", 
+                    description: "Antena berbentuk sirip hiu yang memberikan sinyal lebih stabil, mengurangi hambatan angin, serta menambah kesan sporty dan modern pada mobil", 
+                    image: "img/ioniq64.png" 
+                }
+            ],
+            "Staria": [
+                { 
+                    title: "Sistem Pengisian Daya Telepon Wireless", 
+                    description: "Mengurangi kekacauan kabel dan memastikan ponsel tetap terisi dengan mudah saat di perjalanan", 
+                    image: "img/staria1.png" 
+                },
+                { 
+                    title: "Kunci Pintar dengan Tombol Start", 
+                    description: "Memungkinkan Anda menghidupkan mesin mobil hanya dengan menekan tombol, tanpa perlu mengeluarkan kunci dari saku atau tas", 
+                    image: "img/staria2.png" 
+                },
+                { 
+                    title: "Pemanas pada Kursi", 
+                    description: "Memberikan kenyamanan ekstra dengan menghangatkan kursi, ideal untuk cuaca dingin", 
+                    image: "img/staria3.png" 
+                },
+                { 
+                    title: "Kursi dengan Ventilasi", 
+                    description: "Memberikan sirkulasi udara yang lebih baik dan mengurangi kelembapan, menjaga kenyamanan pengemudi dan penumpang di cuaca panas", 
+                    image: "img/staria4.png" 
+                }
+            ],
+            "Ioniq 5": [
+                { 
+                    title: "Charge Door System", 
+                    description: "Sistem elektrik untuk membuka dan menutup penutup pengisi daya serta memberikan informasi level baterai secara real-time", 
+                    image: "img/ioniq51.png" 
+                },
+                { 
+                    title: "Column Type Shift-by-Wire", 
+                    description: "Sistem perpindahan gigi menggunakan teknologi shift-by-wire yang menggantikan sistem mekanis tradisional dengan kontrol elektronik", 
+                    image: "img/ioniq52.jpg" 
+                },
+                { 
+                    title: "Smart Cruise Control (SCC)", 
+                    description: "Sistem kendali jelajah cerdas yang dapat mengatur kecepatan kendaraan secara otomatis dan menjaga jarak aman dengan kendaraan di depan", 
+                    image: "img/ioniq53.jpg" 
+                },
+                { 
+                    title: "Sliding Glove Box", 
+                    description: "Laci sarung tangan dengan mekanisme geser yang memudahkan akses dan penyimpanan barang di dalam kendaraan", 
+                    image: "img/ioniq54.jpg" 
+                }
+            ],
+            "Santa Fe": [
+                { 
+                    title: "Front Radiator Grille (hanya tersedia pada type Calligraphy)", 
+                    description: "Gril radiator depan dengan desain elegan yang memperkuat tampilan depan mobil, memberikan aliran udara yang optimal ke mesin", 
+                    image: "img/santafe1.png" 
+                },
+                { 
+                    title: "H-lights Head Lamps", 
+                    description: "Lampu depan dengan desain H-lights yang memberikan pencahayaan lebih terang dan jelas di malam hari", 
+                    image: "img/santafe2.png" 
+                },
+                { 
+                    title: "Fitur Eksklusif Hybrid", 
+                    description: "Fitur-fitur khusus yang ditawarkan pada varian hybrid, yang menggabungkan efisiensi bahan bakar dengan teknologi ramah lingkungan", 
+                    image: "img/santafe3.jpg" 
+                },
+                { 
+                    title: "Paddle Shift - Regenerative Braking Mode", 
+                    description: "Sistem rem regeneratif yang dapat diatur menggunakan paddle shift, memungkinkan pengemudi untuk mengubah tingkat pengereman dan mengubah energi kinetik menjadi daya baterai", 
+                    image: "img/santafe4.jpg" 
+                }
+            ],
+            "Kona": [
+                { 
+                    title: "N Line Exclusive Alcantara Combination Seats", 
+                    description: "Kursi dengan kombinasi material Alcantara eksklusif yang tersedia pada varian N Line, memberikan kenyamanan dan estetika premium", 
+                    image: "img/kona1.jpg" 
+                },
+                { 
+                    title: "N Line Exclusive Steering Wheel", 
+                    description: "Setir eksklusif N Line dengan desain sporty dan material premium, memberikan kenyamanan dan kontrol maksimal", 
+                    image: "img/kona2.jpg" 
+                },
+                { 
+                    title: "N Line Exclusive Metal Pedals", 
+                    description: "Pedal eksklusif N Line yang terbuat dari logam dengan desain sporty, memberikan kesan modern dan sporty pada interior mobil", 
+                    image: "img/kona3.jpg" 
+                },
+                { 
+                    title: "N Line Exclusive Bumper", 
+                    description: "Bumper eksklusif N Line dengan desain agresif dan sporty, menambah tampilan dinamis pada bagian depan kendaraan", 
+                    image: "img/kona4.jpg" 
+                }
+            ],
+            "Tucson": [
+                { 
+                    title: "Parametric Jewel Hidden Signature Lamps", 
+                    description: "Lampu dengan desain parametris yang inovatif, memberikan tampilan futuristik saat mobil dinyalakan", 
+                    image: "img/tucson1.png" 
+                },
+                { 
+                    title: "Roof Rail/Panoramic Sunroof", 
+                    description: "Rel atap yang memungkinkan pemasangan aksesori tambahan seperti rak barang/panoramic sunroof menawarkan atap kaca besar yang memberikan pemandangan langit terbuka", 
+                    image: "img/tucson2.png" 
+                },
+                { 
+                    title: "19-inch Alloy Wheels (hanya tersedia pada trim Hybrid)", 
+                    description: "Roda aloi berukuran 19 inci yang hanya tersedia pada trim Hybrid, memberikan tampilan yang lebih sporty dan elegan pada kendaraan", 
+                    image: "img/tucson3.jpg" 
+                },
+                { 
+                    title: "LED Rear Combination Lamps", 
+                    description: "Lampu belakang kombinasi LED yang dirancang untuk memberikan penerangan lebih terang dan efisien", 
+                    image: "img/tucson4.png" 
+                }
+            ],
+            "Facelift Creta": [
+                { 
+                    title: "Power Tailgate (hanya tersedia di trim N Line)", 
+                    description: "Cukup tekan tombol, pintu bagasi akan terbuka secara otomatis", 
+                    image: "img/faceliftcreta1.png" 
+                },
+                { 
+                    title: "Front-row Ventilated Seats (hanya tersedia di trim: Prime, Style & N Line)", 
+                    description: "Kursi pertama dilengkapi dengan elemen pendingin yang dapat Anda atur agar berkendara lebih menyenangkan", 
+                    image: "img/faceliftcreta2.png" 
+                },
+                { 
+                    title: "BOSE® Premium audio system (hanya tersedia di trim: Prime, Style & N Line)", 
+                    description: "Dilengkapi dengan BOSE, dirancang untuk menciptakan audio yang imersif, membuat Anda merasa seolah-olah berada di pusat pertunjukan", 
+                    image: "img/faceliftcreta3.png" 
+                },
+                { 
+                    title: "Console Armrest with Air Purifier (hanya tersedia di trim: Prime & N Line)", 
+                    description: "Dilengkapi dengan teknologi pembersih udara canggih, menjadikan setiap perjalanan lebih sehat dan menyenangkan", 
+                    image: "img/faceliftcreta4.png" 
+                }
+            ],
+            "Creta": [
+                { 
+                    title: "Panoramic Sunroof", 
+                    description: "Atap kaca besar yang memberikan pemandangan langit terbuka, memungkinkan lebih banyak cahaya alami masuk ke dalam kabin", 
+                    image: "img/creta1.png" 
+                },
+                { 
+                    title: "Leather Seat", 
+                    description: "Kursi yang dibalut dengan bahan kulit berkualitas tinggi, memberikan kenyamanan dan tampilan mewah pada interior kendaraan", 
+                    image: "img/creta2.png" 
+                },
+                { 
+                    title: "60:40 Seat", 
+                    description: "Sistem kursi belakang yang dapat dilipat dengan proporsi 60:40, memungkinkan fleksibilitas dalam mengatur ruang kargo dan penumpang", 
+                    image: "img/creta3.png" 
+                },
+                { 
+                    title: "Flat and Plenty Space", 
+                    description: "Ruang kabin yang datar dan luas, memberikan kenyamanan ekstra bagi penumpang dan fleksibilitas untuk membawa barang", 
+                    image: "img/creta4.png" 
+                }
+            ],
+            "Stargazer X": [
+                { 
+                    title: "Captain Seat", 
+                    description: "Kursi individual yang dirancang untuk memberikan kenyamanan lebih, dengan desain ergonomis dan dilengkapi sandaran tangan", 
+                    image: "img/stargazerx1.jpg" 
+                },
+                { 
+                    title: "Full Digital Supervision Cluster with 4.2” TFT LCD", 
+                    description: "Panel instrumen digital penuh dengan layar TFT LCD 4.2 inci yang menampilkan informasi kendaraan secara jelas dan modern", 
+                    image: "img/stargazerx2.jpg" 
+                },
+                { 
+                    title: "BOSE® Premium Sound System", 
+                    description: "Sistem suara premium dari BOSE yang dirancang untuk memberikan pengalaman audio yang luar biasa dengan kualitas suara jernih dan mendalam", 
+                    image: "img/stargazerx3.jpg" 
+                },
+                { 
+                    title: "Sistem Pengisian Daya Telepon Wireless", 
+                    description: "Pengisi daya ponsel tanpa kabel yang memungkinkan pengisian daya perangkat secara praktis hanya dengan meletakkannya di tempat yang telah disediakan", 
+                    image: "img/stargazerx4.jpg" 
+                }
+            ],
+            "Stargazer": [
+                { 
+                    title: "Drive Mode (Normal, Eco, Sport, Smart)", 
+                    description: "Mode berkendara yang dapat dipilih sesuai preferensi, memungkinkan pengemudi untuk menyesuaikan performa kendaraan dengan kondisi jalan dan kebutuhan berkendara", 
+                    image: "img/stargazer1.jpg" 
+                },
+                { 
+                    title: "Double Blower", 
+                    description: "Sistem pendingin udara dengan dua blower terpisah yang memungkinkan distribusi udara lebih merata di dalam kabin", 
+                    image: "img/stargazer2.jpg" 
+                },
+                { 
+                    title: "Parking Sensor", 
+                    description: "Sensor untuk mendeteksi objek di sekitar mobil saat parkir, memberikan peringatan suara atau visual untuk membantu manuver parkir", 
+                    image: "img/stargazer3.jpg" 
+                },
+                { 
+                    title: "Hill-start Assist Control", 
+                    description: "Fitur yang membantu mencegah kendaraan mundur saat mulai melaju di jalan menanjak dengan menahan rem sejenak saat pengemudi berpindah dari pedal rem ke gas", 
+                    image: "img/stargazer4.jpg" 
+                }
+            ]
+        };
+    
+        // Function to extract query parameters safely
+        function getQueryParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.has(name) ? decodeURIComponent(urlParams.get(name)) : null;
+        }
+    
+        function loadFeatures() {
+            const carType = getQueryParameter("carType");
+            const featuresContainer = document.getElementById("features-container");
+    
+            if (!featuresContainer) return; // Cegah error jika elemen tidak ditemukan
+    
+            featuresContainer.innerHTML = ""; // Bersihkan fitur sebelumnya
+    
+            // BlueLink Visibility
+            const blueLinkContainer = document.getElementById("bluelink-container");
+            if (blueLinkContainer) {
+                blueLinkContainer.style.visibility = carType === "Palisade" || "Ioniq 6" || "Ioniq 6" || "Ioniq 5" || "Santa Fe" || "Kona" || "Facelift Creta" || "Creta" || "Stargazer X" || "Stargazer" ? "visible" : "hidden";
+            }
+    
+            // Load fitur berdasarkan carType
+            if (carFeatures[carType]) {
+                carFeatures[carType].forEach(feature => {
+                    const featureDiv = document.createElement("div");
+                    featureDiv.classList.add("feature");
+    
+                    featureDiv.innerHTML = `
+                        <img src="${feature.image}" alt="${feature.title}">
+                        <h3>${feature.title}</h3>
+                        <p>${feature.description}</p>
+                    `;
+    
+                    featuresContainer.appendChild(featureDiv);
+                });
+            }
+        }
+    
+        window.onload = function() {
+            const carType = getQueryParameter('carType') || "Palisade";
+            const name = getQueryParameter('name') || "Nama Produk Tidak Ditemukan";
+    
+            // Set product details
+            document.getElementById("product-name").innerText = name;
+    
+            // Ganti gambar produk berdasarkan carType
+            const productImage = document.getElementById("product-name-image");
+            if (productImage) {
+                productImage.src = carType === "Palisade" ? "img/palisadebanner.png" : 
+                                   carType === "Ioniq 6" ?  "img/ioniq6banner.jpg" : 
+                                   carType === "Staria" ?  "img/stariabanner.png" : 
+                                   carType === "Ioniq 5" ?  "img/ioniq5banner.jpg" : 
+                                   carType === "Santa Fe" ?  "img/santafebanner.jpg" : 
+                                   carType === "Kona" ?  "img/konabanner.png" : 
+                                   carType === "Tucson" ?  "img/tucsonbanner.jpg" :
+                                   carType === "Facelift Creta" ?  "img/faceliftcretabanner.jpg" : 
+                                   carType === "Creta" ?  "img/cretabanner.jpg" : 
+                                   carType === "Stargazer X" ?  "img/stargazerxbanner.jpg" : 
+                                   carType === "Stargazer" ?  "img/stargazerbanner.jpg" : 
+                                   "img/default.jpg";
+                productImage.alt = carType;
+            }
+    
+            // Set price table based on car type
+            const priceTable = document.querySelector('#price-table table');
+            if (priceTable) {
+                priceTable.innerHTML = "<tr><th>Varian</th><th>Harga</th></tr>"; // Reset tabel harga
+                let prices = {};
+    
+                if (carType === 'Palisade') {
+                    prices = {
+                        "SIGNATURE FWD": "Rp 1.074.200.000",
+                        "SIGNATURE AWD": "Rp 1.211.900.000",
+                        "SIGNATURE XRT FWD": "Rp 1.102.400.000",
+                        "SIGNATURE XRT AWD": "Rp 1.240.150.000"
+                    };
+                } else if (carType === 'Ioniq 6') {
+                    prices = {
+                        "SIGNATURE LONG RANGE": "Rp 1.218.600.000"
+                    };
+                } else if (carType === 'Staria') {
+                    prices = {
+                        "SIGNATURE 9 SEATER": "Rp 947.700.000",
+                        "SIGNATURE 7 SEATER": "Rp 1.085.400.000"
+                    };
+                } else if (carType === 'Ioniq 5') {
+                    prices = {
+                        "SIGNATURE LONG RANGE": "Rp 908.500.000"
+                    };
+                } else if (carType === 'Santa Fe') {
+                    prices = {
+                        "SIGNATURE FWD": "Rp 717.000.000",
+                        "SIGNATURE AWD": "Rp 803.400.000",
+                        "SIGNATURE XRT FWD": "Rp 805.200.000",
+                        "SIGNATURE XRT AWD": "Rp 889.300.000"
+                    };
+                } else if (carType === 'Kona') {
+                    prices = {
+                        "STYLE": "Rp 556.800.000",
+                        "PRIME REGULAR": "Rp 574.600.000",
+                        "PRIME LONG RANGE": "Rp 624.400.000",
+                        "SIGNATURE REGULAR 1 TONE": "Rp 641.100.000",
+                        "SIGNATURE REGULAR 2 TONE": "Rp 644.100.000",
+                        "SIGNATURE LONG RANGE 1 TONE": "Rp 657.600.000",
+                        "SIGNATURE LONG RANGE 2 TONE": "Rp 660.600.000",
+                        "N LITE 1 TONE": "Rp 678.100.000",
+                        "N LITE 2 TONE": "Rp 681.100.000"
+                    };
+                } else if (carType === 'Tucson') {
+                    prices = {
+                        "2.0 MPI Gasoline": "Rp 646.850.000",
+                        "1.6 T-HEV ": "Rp 758.800.000"
+                    };
+                } else if (carType === 'Facelift Creta') {
+                    prices = {
+                        "CRETA ACTIVE MT": "Rp 305.700.000",
+                        "CRETA TREND MT": "Rp 337.650.000",
+                        "CRETA TREND IVT": "Rp 358.150.000",
+                        "CRETA STYLE IVT": "Rp 402.650.000",
+                        "CRETA PRIME IVT 1 TONE": "Rp 432.950.000",
+                        "CRETA PRIME IVT 2 TONE": "Rp 435.950.000",
+                        "CRETA N LINE 1 TONE": "Rp 466.500.000",
+                        "CRETA N LINE 2 TONE": "Rp 469.500.000",
+                        "CRETA N LINE TURBO 1 TONE": "Rp 513.300.000",
+                        "CRETA N LINE TURBO 2 TONE": "Rp 516.300.000"
+                    };
+                } else if (carType === 'Creta') {
+                    prices = {
+                        "CRETA ACTIVE 6-SPEED MT": "Rp 305.700.000",
+                        "CRETA TREND 6-SPEED MT": "Rp 327.850.000",
+                        "CRETA TREND IVT": "Rp 349.250.000",
+                        "CRETA STYLE IVT": "Rp 392.900.000",
+                        "CRETA PRIME IVT 1 TONE": "Rp 426.200.000",
+                        "CRETA PRIME IVT 2 TONE": "Rp 429.200.000",
+                        "CRETA ALPHA EDITION": "Rp 431.250.000"
+                    };
+                } else if (carType === 'Stargazer X') {
+                    prices = {
+                        "STYLE 7P": "Rp 345.150.000",
+                        "STYLE 6P": "Rp 347.200.000",
+                        "PRIME 7P 1 TONE": "Rp 355.800.000",
+                        "PRIME 7P 2 TONE": "Rp 357.300.000",
+                        "PRIME 6P 1 TONE": "Rp 358.000.000",
+                        "PRIME 6P 2 TONE": "Rp 359.500.000"
+                    };
+                } else if (carType === 'Stargazer') {
+                    prices = {
+                        "NEW ACTIVE 7P MT": "Rp 256.600.000",
+                        "NEW ACTIVE 7P IVT": "Rp 269.700.000",
+                        "NEW ESSENTIAL 7P MT": "Rp 268.500.000",
+                        "NEW ESSENTIAL 6P MT": "Rp 269.500.000",
+                        "NEW ESSENTIAL 7P IVT": "Rp 282.500.000",
+                        "NEW ESSENTIAL 6P IVT": "Rp 283.500.000",
+                        "NEW PRIME 7P IVT 1 TONE": "Rp 328.500.000",
+                        "NEW PRIME 7P IVT 2 TONE": "Rp 330.000.000",
+                        "NEW PRIME 6P IVT 1 TONE": "Rp 329.500.000",
+                        "NEW PRIME 6P IVT 2 TONE": "Rp 331.000.000"
+                    };
+                }
+
+    
+                Object.entries(prices).forEach(([variant, price]) => {
+                    const row = priceTable.insertRow();
+                    row.insertCell(0).textContent = variant;
+                    row.insertCell(1).textContent = price;
+                });
+            }
+    
+            // Warna-warna untuk mobil
+            const colorOptions = carType === 'Palisade' ? [
+                { color: "#f3f3f3", name: "Creamy White Pearl" },
+                { color: "#555756", name: "Graphite Gray Metallic" },
+                { color: "#2d3548", name: "Moonlight Blue Pearl" },
+                { color: "#a7a9a8", name: "Shimmering Silver Metallic" },
+                { color: "#1b1a1f", name: "Abyss Black Pearl" }
+            ] : carType === 'Ioniq 6' ? [
+                { color: "#999790", name: "Gravity Gold Matte" },
+                { color: "#2c393d", name: "Nocturne Gray Matte" },
+                { color: "#05080a", name: "Abyss Black Pearl" },
+                { color: "#eaefe7", name: "Serenity White Pearl" },
+                { color: "#070e19", name: "Biophilic Blue Pearl" }
+            ] : carType === 'Staria' ? [
+                { color: "#e1e0e5", name: "Creamy White" },
+                { color: "#202022", name: "Abyss Black Pearl" },
+                { color: "#35353a", name: "Graphite Gray Metallic" },
+                { color: "#787677", name: "Shimmering Silver Metallic" }
+            ] : carType === 'Ioniq 5' ? [
+                { color: "#10100e", name: "Midnight Black Pearl" },
+                { color: "#86817e", name: "Magnetic Silver Metalic" },
+                { color: "#434240", name: "Titan Gray Metalic" },
+                { color: "#d3d2d6", name: "Optic White" },
+                { color: "#898582", name: "Gravity Gold Matte" }
+            ] : carType === 'Santa Fe' ? [
+                { color: "#f2f4f3", name: "Creamy White Pearl" },
+                { color: "#19191c", name: "Midnight Black Matte" },
+                { color: "#414548", name: "Titan Gray Metallic" },
+                { color: "#eff1ea", name: "Optic White Matte" },
+                { color: "#0f0f11", name: "Midnight Black Pearl" }
+            ] : carType === 'Kona' ? [
+                { color: "#04070d", name: "Midnight Black Pearl" },
+                { color: "#1f2024", name: "Titan Gray Metallic" },
+                { color: "#4b4b55", name: "Magnetic Silver Metallic" },
+                { color: "#c7c8ca", name: "Creamy White Pearl" },               
+                { color: "#8a8a8a", name: "Optic White Matte" },
+                { color: "#b71516", name: "Dragon Red Pearl" }
+            ] : carType === 'Tucson' ? [
+                { color: "#e5e5e3", name: "Creamy White Pearl" },
+                { color: "#0a0a0a", name: "Phantom Black Pearl" },
+                { color: "#6a0d01", name: "Ultimate Red Metallic" },
+                { color: "#3d3d3b", name: "Titan Gray Metallic" },
+                { color: "#383c3b", name: "Pine Green Matte" }
+            ] : carType === 'Facelift Creta' ? [
+                { color: "#252628", name: "Midnight Black Matte" },
+                { color: "#9c9da1", name: "Magnetic Silver Matte" },
+                { color: "#333835", name: "Shadow Gray Metallic With Black Roof" },
+                { color: "#951728", name: "Dragon Red Pearl With Black Roof" },
+                { color: "#ecf1f7", name: "Creamy White Pearl With Black Roof" }
+            ] : carType === 'Creta' ? [
+                { color: "#292d30", name: "Titan Gray Metallic" },
+                { color: "#030406", name: "Midnight Black Pearl" },
+                { color: "#bebfc3", name: "Magnetic Silver Metallic" },
+                { color: "#951728", name: "Dragon Red Pearl" },
+                { color: "#ecf1f7", name: "Creamy White Pearl" },
+                { color: "#bebfc3", name: "Magnetic Silver Metallic With Black Roof" },
+                { color: "#951728", name: "Dragon Red Pearl With Black Roof" },
+                { color: "#ecf1f7", name: "Creamy White Pearl With Black Roof" }
+            ] : carType === 'Stargazer X' ? [
+                { color: "#951728", name: "Dragon Red Pearl" },
+                { color: "#bebfc3", name: "Magnetic Silver Metallic" },
+                { color: "#ecf1f7", name: "Creamy White Pearl" },
+                { color: "#030406", name: "Midnight Black Pearl" },
+                { color: "#292d30", name: "Titan Gray Metallic" }
+            ] : carType === 'Stargazer' ? [
+                { color: "#bebfc3", name: "Magnetic Silver Metallic" },
+                { color: "#ecf1f7", name: "Creamy White Pearl" },
+                { color: "#030406", name: "Midnight Black Pearl" },
+                { color: "#292d30", name: "Titan Gray Metallic" },
+                { color: "#951728", name: "Dragon Red Pearl" }
+            ] : [
+                { color: "#00FF00", name: "Hijau" },
+                { color: "#0000FF", name: "Biru" }
+            ];
+    
+            const colorSelection = document.getElementById("color-selection");
+            const colorName = document.getElementById("selected-color-name");
+            colorName.textContent = colorOptions[0].name;
+    
+            if (colorSelection && colorName) {
+                colorSelection.innerHTML = ""; // Reset pilihan warna
+    
+                colorOptions.forEach(option => {
+                    const colorBox = document.createElement("div");
+                    colorBox.classList.add("color-box");
+                    colorBox.style.backgroundColor = option.color;
+    
+                    const checkmark = document.createElement("div");
+                    checkmark.classList.add("checkmark");
+                    checkmark.innerHTML = "&#10004;"; // Centang ✔
+    
+                    colorBox.appendChild(checkmark);
+                    colorSelection.appendChild(colorBox);
+    
+                    colorBox.onclick = function() {
+                        document.querySelectorAll('.color-box').forEach(box => box.classList.remove('selected'));
+                        colorBox.classList.add('selected');
+                        colorName.innerText = option.name; // Ubah teks nama warna saat dipilih
+                    };
+                });
+    
+                // Pilih warna pertama sebagai default
+                const firstColor = document.querySelector('.color-box');
+                if (firstColor) firstColor.classList.add('selected');
+            }
+
+                // Ambil elemen h1 dan p
+            const carTitle = document.getElementById('car-title');
+            const carDescription = document.getElementById('car-description');
+
+            // Atur teks berdasarkan carType
+            if (carType === 'Palisade') {
+                carTitle.textContent = "PALISADE XRT Baru";
+                carDescription.textContent = "Mulailah perjalanan luar biasa dengan perpaduan teknologi mutakhir, kenyamanan premium, dan desain tangguh.";
+            } else if (carType === 'Ioniq 6') {
+                carTitle.textContent = "Hyundai IONIQ 6";
+                carDescription.textContent = "Sedan listrik futuristik dengan desain aerodinamis, teknologi canggih, dan efisiensi luar biasa, siap membawa Anda menuju masa depan berkendara yang lebih hijau dan elegan.";
+            } else if (carType === 'Staria') {
+                carTitle.textContent = "Hyundai Staria";
+                carDescription.textContent = "Minivan futuristik yang menggabungkan kenyamanan, teknologi canggih, dan desain modern, hadir untuk menjawab kebutuhan perjalanan keluarga Anda.";
+            } else if (carType === 'Ioniq 5') {
+                carTitle.textContent = "Hyundai IONIQ 5";
+                carDescription.textContent = "Mobil listrik canggih dengan desain futuristik dan teknologi terdepan, memberikan pengalaman berkendara yang ramah lingkungan dan penuh inovasi.";
+            } else if (carType === 'Santa Fe') {
+                carTitle.textContent = "Keamanan dan Kenyamanan Tanpa Batas";
+                carDescription.textContent = "SUV yang menggabungkan performa tangguh, kenyamanan premium, dan teknologi canggih, siap menemani petualangan Anda.";
+            } else if (carType === 'Kona') {
+                carTitle.textContent = "Kona, Temani Petualangan Anda";
+                carDescription.textContent = "Crossover kompak dengan desain dinamis dan fitur canggih, menghadirkan pengalaman berkendara yang menyenangkan dan penuh gaya.";
+            } else if (carType === 'Tucson') {
+                carTitle.textContent = "Menjelajah Lebih Jauh, Lebih Cerdas";
+                carDescription.textContent = "SUV yang menawarkan performa tangguh, kenyamanan maksimal, dan teknologi canggih, siap menghadirkan petualangan tak terlupakan.";
+            } else if (carType === 'Facelift Creta') {
+                carTitle.textContent = "Kenyamanan dan Gaya Tanpa Kompromi";
+                carDescription.textContent = "SUV dengan desain modern, teknologi canggih, dan kenyamanan luar biasa, siap memberikan pengalaman berkendara terbaik.";
+            } else if (carType === 'Creta') {
+                carTitle.textContent = "Gaya dan Kekuatan dalam Setiap Perjalanan";
+                carDescription.textContent = "SUV kompak dengan desain elegan, performa andal, dan fitur modern, siap menemani perjalanan Anda.";
+            } else if (carType === 'Stargazer X') {
+                carTitle.textContent = "Menjelajah Lebih Jauh, Bersama Keluarga";
+                carDescription.textContent = "MPV dengan desain futuristik, ruang yang luas, dan teknologi canggih, siap membawa keluarga Anda ke destinasi dengan nyaman dan penuh gaya.";
+            } else if (carType === 'Stargazer') {
+                carTitle.textContent = "Kenyamanan Tanpa Batas, Petualangan Tak Terlupakan";
+                carDescription.textContent = "MPV yang menawarkan kenyamanan maksimal, ruang luas, dan teknologi terkini, siap menemani perjalanan keluarga Anda.";
+            } else {
+                carTitle.textContent = "Selamat Datang di Koleksi Mobil Kami";
+                carDescription.textContent = "Pilih kendaraan yang sesuai dengan gaya dan kebutuhan Anda.";
+            }
+    
+                // Ambil tombol WhatsApp
+                const whatsappButton = document.getElementById('whatsapp-button');
+
+            // Menambahkan event listener untuk tombol
+            whatsappButton.addEventListener('click', function() {
+                // Pesan yang ingin dikirim melalui WhatsApp
+                const message = `Saya tertarik dan ingin mendapatkan info lebih lanjut tentang ${carType}`;
+                
+                // URL WhatsApp dengan pesan
+                const whatsappUrl = `https://wa.me/+6282291331505/?text=${encodeURIComponent(message)}`;
+                
+                // Mengarahkan ke WhatsApp
+                window.open(whatsappUrl, '_blank');
+            });
+
+            // Load fitur mobil
+            loadFeatures();
+        };
+    </script>
+
+<footer style="background-color: #2a2f37; color: #dee5ec; padding: 20px 0; text-align: center; font-family: Arial, sans-serif;">
+    <div style="max-width: 1200px; margin: auto; padding: 0 20px;">
+        <h2 style="color: #dee5ec; margin-bottom: 10px;">Dywane Hyundai</h2>
+        <p style="margin: 0; font-size: 14px; color: #7e8790;">Memberikan penawaran terbaik untuk mobil Hyundai impian Anda</p>
+
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; margin-top: 20px; color: #dee5ec;">
+            <div style="flex: 1; min-width: 200px; margin: 10px 0;">
+                <h3 style="color: #dee5ec; font-size: 16px; border-bottom: 2px solid #374a67; padding-bottom: 5px; display: inline-block;">Kontak Saya</h3>
+                <p style="margin: 5px 0; color: #7e8790;">Email: <a href="mailto:dealerxyz@email.com" style="color: #dee5ec; text-decoration: none;">dywanehyundai@email.com</a></p>
+                <p style="margin: 5px 0; color: #7e8790;">No. Telp/WhatsApp: <a href="https://wa.me/+6282291331505" style="color: #dee5ec; text-decoration: none;">+62 822 9133 1505</a></p>
+            </div>
+
+            <div style="flex: 1; min-width: 200px; margin: 10px 0;">
+                <h3 style="color: #dee5ec; font-size: 16px; border-bottom: 2px solid #374a67; padding-bottom: 5px; display: inline-block;">Lokasi</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+                    <!-- Cabang Kutisari -->
+                    <div style="flex: 1; min-width: 200px;">
+                        <p style="margin: 5px 0;">
+                            <a style="color: #dee5ec; text-decoration: none; margin: 0 5px;">Jl. Kutisari 10, Surabaya</a>
+                        </p>
+                        <p style="margin: 5px 0; color: #7e8790;">Senin - Jumat: 08.30 - 17.00</p>
+                        <p style="margin: 5px 0; color: #7e8790;">Sabtu: 08.30 - 15.00</p>
+                    </div>
+            
+                    <!-- Cabang Galaxy Mall -->
+                    <div style="flex: 1; min-width: 200px;">
+                        <p style="margin: 5px 0;">
+                            <a style="color: #dee5ec; text-decoration: none; margin: 0 5px;">Galaxy Mall 3, G-342 Surabaya</a>
+                        </p>
+                        <p style="margin: 5px 0; color: #7e8790;">Senin - Minggu: 08.00 - 21.30</p>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div style="flex: 1; min-width: 200px; margin: 10px 0;">
+                <h3 style="color: #dee5ec; font-size: 16px; border-bottom: 2px solid #374a67; padding-bottom: 5px; display: inline-block;">Sosial Media</h3>
+                <p style="margin: 5px 0;">
+                    <a href="https://www.instagram.com/dywanehyundai?igsh=bnJjNTI1ZThzOHB6" style="color: #dee5ec; text-decoration: none; margin: 0 5px;">Instagram</a>
+                </p>
+            </div>
+        </div>
+
+        <hr style="border-color: #374a67; margin: 20px 0;">
+        
+        <p style="font-size: 12px; color: #7e8790;">&copy; 2025 Dywane. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

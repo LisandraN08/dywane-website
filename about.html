@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IF=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Elianto Dealer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #2a2f37;
+            background-color: #f4f8fb;
+            overflow-x: hidden;
+        }
+        h2, h3 {
+            color: #374a67;
+            opacity: 0;
+            animation: fadeInUp 1s forwards;
+        }
+        p {
+            line-height: 1.6;
+            color: #7e8790;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes scaleIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes slideIn {
+            0% { opacity: 0; transform: translateX(-100px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        .header {
+            background-color: #2a2f37;
+            padding: 20px;
+            text-align: center;
+            color: #dee5ec;
+            animation: slideIn 1.2s ease-in-out forwards;
+        }
+
+        .about-section {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            animation: scaleIn 1.5s forwards;
+        }
+        .about-image img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+
+        .visi-section {
+            background-color: #f4f8fb;
+            color: #dee5ec;
+            border-radius: 10px;
+            padding: 40px;
+            margin-left: 80px;
+            margin-right: 80px;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 1.5s forwards;
+        }
+
+        .misi-section {
+            background-color: #f4f8fb;
+            color: #dee5ec;
+            border-radius: 10px;
+            padding: 40px;
+            margin-top: 40px;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 1.5s 0.5s forwards;
+        }
+
+        .misi-item {
+            background-color: #dee5ec;
+            color: #000;
+            margin: 20px auto;
+            border-radius: 8px;
+            padding: 20px;
+            width: 90%;
+            max-width: 700px;
+
+            opacity: 0;
+            transform: translateX(-100%);
+            animation: slideIn 1s forwards;
+        }
+
+        .misi-item:nth-child(odd) {
+            animation-delay: 1s;
+        }
+
+        .misi-item:nth-child(even) {
+            animation-delay: 1.5s;
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .misi-item {
+                width: 95%;
+            }
+        }
+
+        .why-choose-us {
+            margin-top: 40px;
+            opacity: 0;
+            animation: fadeInUp 1.5s forwards;
+        }
+        .why-choose-us ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .why-choose-us li {
+            background-color: #374a67;
+            color: #dee5ec;
+            padding: 20px;
+            border-radius: 5px;
+            width: 45%;
+            margin: 10px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeInUp 0.8s forwards;
+            animation-delay: calc(0.2s * var(--delay));
+        }
+
+        @media (max-width: 1024px) {
+            .misi-item {
+                width: 95%;
+            }
+
+            .header h2, .header nav {
+                font-size: 18px;
+            }
+
+            .about-image img {
+                max-width: 100%;
+            }
+
+            .about-content {
+                padding: 10px;
+            }
+
+            .visi-section, .misi-section {
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+
+            .why-choose-us ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .why-choose-us li {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .misi-item {
+                width: 100%;
+            }
+
+            .header {
+                padding: 10px;
+            }
+
+            .about-section {
+                margin: 30px;
+            }
+
+            .about-image img {
+                max-width: 90%;
+            }
+
+            footer div {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            footer div > div {
+                margin-bottom: 20px;
+            }
+
+            footer {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h2 class="logo">Elianto</h2>
+    <nav class="navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="products.html">Products</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://wa.me/+6281235045365">
+            <button class="btnlogin-popup">Ask</button>
+        </a>
+    </nav>
+</header>
+
+<section class="about-section">
+    <h2 style="padding-top: 100px; padding-bottom: 30px; font-size: 28px;">About Us</h2>
+    <div class="about-content">
+        <div class="about-image">
+            <img src="img/dealerWuling.jpg" alt="Dealer Mobil XYZ">
+        </div>
+        <p>Elianto Car Dealer is a leading dealer in Indonesia that has been established since 2000. We provide a variety of high quality cars with the best service. Customer trust is our top priority, and we are proud to serve the vehicle needs of the Indonesian people for more than two decades.</p>
+    </div>
+</section>
+
+    <div class="section visi-section">
+        <h2 style="text-align: center;">Our Vision</h2>
+        <p style="text-align: center;">"To become a trusted and innovative car dealer that provides high quality mobility solutions for all levels of society, as well as being a leader in automotive services in Indonesia by prioritizing customer satisfaction, sustainability and integrity."</p>
+    </div>
+
+    <div class="section misi-section">
+        <h2 style="text-align: center;">Our Mission</h2>
+
+        <div class="misi-item">
+            <h3 style="margin-bottom: 18px;">Provide a Superior Customer Experience</h3>
+            <p>Prioritizing the best service with a professional team that is always ready to help customers in choosing a vehicle that suits their needs and budget.</p>
+        </div>
+
+        <div class="misi-item">
+            <h3 style="margin-bottom: 18px;">Offering High Quality Vehicles</h3>
+            <p>Only providing cars from trusted brands that have been tested for reliability, safety and efficiency, as well as providing a variety of vehicle choices for all market segments.</p>
+        </div>
+
+        <div class="misi-item">
+            <h3 style="margin-bottom: 18px;">Become a Long Term Riding Partner</h3>
+            <p>Providing quality after-sales and service at competitive prices, so that customers feel comfortable and safe in maintaining their vehicles.</p>
+        </div>
+
+        <div class="misi-item">
+            <h3 style="margin-bottom: 18px;">Encouraging Innovation and Technology in Services</h3>
+            <p>Using the latest technology in the sales, customer service and after-sales processes to provide convenience, comfort and speed in every transaction.</p>
+        </div>
+    </div>
+
+
+<section class="about-section">
+    <h2>Why Choose Us?</h2>
+    <div class="why-choose-us">
+        <ul>
+            <li style="--delay: 1">More than 20 years experience in the automotive industry</li>
+            <li style="--delay: 2">Wide selection of cars from various well-known brands</li>
+            <li style="--delay: 3">Professional and friendly customer service</li>
+            <li style="--delay: 4">Easy and transparent purchasing process</li>
+            <li style="--delay: 5">After-sales facilities and quality service</li>
+        </ul>
+    </div>
+</section>
+
+<footer style="background-color: #2a2f37; color: #dee5ec; padding: 20px 0; text-align: center; font-family: Arial, sans-serif;">
+    <div style="max-width: 1200px; margin: auto; padding: 0 20px;">
+        <h2 style="color: #dee5ec; margin-bottom: 10px;">Elianto Car Dealer</h2>
+        <p style="margin: 0; font-size: 14px; color: #7e8790;">Offering a wide selection of quality cars with professional and reliable service.</p>
+
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; margin-top: 20px; color: #dee5ec;">
+            <div style="flex: 1; min-width: 200px; margin: 10px 0;">
+                <h3 style="color: #dee5ec; font-size: 16px; border-bottom: 2px solid #374a67; padding-bottom: 5px; display: inline-block;">Contact Us</h3>
+                <p style="margin: 5px 0; color: #7e8790;">Telephone: <a href="tel:+62123456789" style="color: #dee5ec; text-decoration: none;">+62 123 456 789</a></p>
+                <p style="margin: 5px 0; color: #7e8790;">Email: <a href="mailto:dealerxyz@email.com" style="color: #dee5ec; text-decoration: none;">eliantodealer@email.com</a></p>
+                <p style="margin: 5px 0; color: #7e8790;">WhatsApp: <a href="https://wa.me/+6281235045365" style="color: #dee5ec; text-decoration: none;">+62 8123 5045 365</a></p>
+            </div>
+
+            <div style="flex: 1; min-width: 200px; margin: 10px 0;">
+                <h3 style="color: #dee5ec; font-size: 16px; border-bottom: 2px solid #374a67; padding-bottom: 5px; display: inline-block;">Our Location</h3>
+                <p style="margin: 5px 0; color: #7e8790;">Jl. Jemur Andayani XVII/2, Surabaya</p>
+                <p style="margin: 5px 0; color: #7e8790;">Monday - Saturday: 08:00 - 18:00</p>
+            </div>
+
+            <div style="flex: 1; min-width: 200px; margin: 10px 0;">
+                <h3 style="color: #dee5ec; font-size: 16px; border-bottom: 2px solid #374a67; padding-bottom: 5px; display: inline-block;">Follow Us</h3>
+                <p style="margin: 5px 0;">
+                    <a href="https://www.facebook.com/dealerxyz" style="color: #dee5ec; text-decoration: none; margin: 0 5px;">Facebook</a> |
+                    <a href="https://www.instagram.com/dealerxyz" style="color: #dee5ec; text-decoration: none; margin: 0 5px;">Instagram</a>
+                </p>
+            </div>
+        </div>
+
+        <hr style="border-color: #374a67; margin: 20px 0;">
+        
+        <p style="font-size: 12px; color: #7e8790;">&copy; 2024 Elianto. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

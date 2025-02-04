@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IF=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produk - Dywane Hyundai</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f8fb;
+            margin: 0;
+            padding: 0;
+            color: #374a67;
+        }
+
+        .section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            color: #374a67;
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+            justify-items: center;
+            margin-top: 30px;
+        }
+
+        .product-card {
+            background-color: #ffffff; /* Clean white background */
+            color: #333;
+            border-radius: 10px;
+            padding: 15px;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeInUp 1s forwards;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card img {
+            width: 100%; /* Ensures the image takes up the full width of the container */
+            height: auto; /* Maintains the aspect ratio of the image */
+            object-fit: cover; /* Ensures the image covers the container without distortion */
+            border-radius: 8px; 
+            margin-bottom: 15px;
+        }
+
+        .product-card h3 {
+            color: #1f2a44; /* Dark blue for product title */
+            font-size: 1.6rem;
+            margin: 0;
+            margin-bottom: 10px;
+        }
+
+        .product-card p {
+            font-size: 1rem;
+            color: #6c757d; /* Lighter text color for descriptions */
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .product-card .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #374a67; /* Gold color for price */
+            margin-bottom: 80px;
+        }
+
+        .product-card .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #18181c; 
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            width: 200px;
+            position: absolute;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .product-card .btn:hover {
+            background-color: #34495e; /* Slightly lighter blue on hover */
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .product-list {
+                grid-template-columns: repeat(2, 1fr); 
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-list {
+                grid-template-columns: repeat(1, 1fr); 
+            }
+
+            .product-card {
+                width: 90%; 
+                height: 108%;
+                margin: 0 auto; 
+                margin-bottom: 50px;
+            }
+
+            .product-card img{
+                width: 80%;
+                margin-left: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h2 class="logo">Dywane</h2>
+        <nav class="navigation">
+            <a href="index.html">Home</a>
+            <a href="products.html">Produk</a>
+            <a href="contact.html">Kontak</a>
+            <a href="https://wa.me/+6282291331505">
+                <button class="btnlogin-popup">Tanya</button>
+            </a>
+        </nav>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="mobile-nav" id="mobileNav">
+            <a href="index.html">Home</a>
+            <a href="products.html">Produk</a>
+            <a href="contact.html">Kontak</a>
+            <a href="https://wa.me/+6282291331595">
+                <button class="btnlogin-popup">Tanya</button>
+            </a>
+        </div>
+    </header>
+    <div class="section">
+        <h2 style="padding-top: 100px; padding-bottom: 30px; font-size: 28px;">Produk</h2>
+        
+        <div class="product-list">
+            <div class="product-card" style="animation-delay: 0.2s;" 
+                onclick="redirectToDetail('Palisade', 'Palisade')">
+                <img src="img/palisadefront.png" alt="Car 1">
+                <h3>Palisade</h3>
+                <p>SUV besar dan mewah yang dirancang untuk keluarga, menawarkan fitur canggih, performa V6 yang kuat, dan interior yang nyaman serta berteknologi tinggi.</p>
+                <p class="price">Mulai Rp 1.074.200.000</p>
+                <a href="https://wa.me/+6282291331505" class="btn">Saya Tertarik</a>
+            </div>
+       
+
+            <div class="product-card" style="animation-delay: 0.4s;"
+                onclick="redirectToDetail('Ioniq 6', 'Ioniq 6')">
+                <img src="img/ioniq6front.png" alt="Car 2">
+                <h3>Ioniq 6</h3>
+                <p>Mobil listrik sedan yang mengusung desain futuristik dan teknologi canggih untuk memberikan pengalaman berkendara ramah lingkungan dan penuh kenyamanan.</p>
+                <p class="price">Rp 1.218.600.000</p>
+                <a href="https://wa.me/+6282291331505" class="btn">Saya Tertarik</a>
+            </div>
+
+            <div class="product-card" style="animation-delay: 0.6s;"
+                onclick="redirectToDetail('Staria', 'Staria')">
+                <img src="img/stariafront.png" alt="Car 3">
+                <h3>Staria</h3>
+                <p>MPV premium dengan desain futuristik, interior luas, dan fitur canggih untuk kenyamanan serta kemewahan maksimal.</p>
+                <p class="price">Rp 947.700.000</p>
+                <a href="https://wa.me/+6282291331505" class="btn">Saya Tertarik</a>
+            </div>
+
+            <div class="product-card" style="animation-delay: 0.8s;"
+                onclick="redirectToDetail('Ioniq 5', 'Ioniq 5')">
+                <img src="img/ioniq5front.png" alt="Car 4">
+                <h3>Ioniq 5</h3>
+                <p>Mobil listrik dengan desain aerodinamis dan teknologi canggih, memberikan pengalaman berkendara yang ramah lingkungan.</p>
+                <p class="price">Rp 908.500.000</p>
+                <a href="https://wa.me/+6282291331505" class="btn">Saya Tertarik</a>
+            </div>
+
+            <div class="product-card" style="animation-delay: 1s;"
+                onclick="redirectToDetail('Santa Fe', 'Santa Fe')">
+                <img src="img/santafefront.png" alt="Car 5">
+                <h3>Santa Fe</h3>
+                <p>SUV dengan kenyamanan premium ini siap menemani setiap petualangan dengan keamanan dan kenyamanan maksimal di setiap perjalanan.</p>
+                <p class="price">Rp 717.000.000</p>
+                <a href="https://wa.me/+6282291331505" class="btn">Saya Tertarik</a>
+            </div>
+
+            <div class="product-card" style="animation-delay: 1.2s;"
+                onclick="redirectToDetail('Kona', 'Kona')">
+                <img src="img/konafront.png" alt="Car 6">
+                <h3>Kona</h3>
+                <p>Crossover yang menghadirkan performa tangguh dan fitur canggih, ideal untuk petualangan di perkotaan maupun alam terbuka.</p>
+                <p class="price">Rp 556.800.000</p>
+                <a href="https://wa.me/+6282291331505" class="btn">Saya Tertarik</a>
+            </div>
+
+            <div class="product-card" style="animation-delay: 1.4s;"
+                onclick="redirectToDetail('Tucson', 'Tucson')">
+                <img src="img/tucsonfront.png" alt="Car 7">
+                <h3>Tucson</h3>
+                <p>SUV yang memberikan kenyamanan dan keamanan terbaik untuk setiap perjalanan, baik di jalanan perkotaan maupun petualangan di luar kota.</p>
+                <p class="price">Rp 646.850.000</p>
+                <a href="https://wa.me/+6282291331505" class="btn">Saya Tertarik</a>
+            </div>
+
+            <div class="product-card" style="animation-delay: 1.6s;"
+                onclick="redirectToDetail('Facelift Creta', 'Facelift Creta')">
+                <img src="img/faceliftcretafront.png" alt="Car 8">
+                <h3>Facelift Creta</h3>
+                <p>Hyundai Facelift Creta hadir dengan desain modern, fitur canggih, dan performa handal, sempurna untuk menjelajahi setiap sudut kota maupun perjalanan jauh.</p>
+                <p class="price">Rp 305.700.000</p>
+                <a href="https://wa.me/+6282291331505" class="btn">Saya Tertarik</a>
+            </div>
+
+            <div class="product-card" style="animation-delay: 1.8s;"
+                onclick="redirectToDetail('Creta', 'Creta')">
+                <img src="img/cretafront.png" alt="Car 9">
+                <h3>Creta</h3>
+                <p>SUV kompak yang memberikan pengalaman berkendara yang nyaman dan efisien untuk setiap petualangan.</p>
+                <p class="price">Rp 305.700.000</p>
+                <a href="https://wa.me/+6282291331505" class="btn">Saya Tertarik</a>
+            </div>
+
+            <div class="product-card" style="animation-delay: 2s;"
+                onclick="redirectToDetail('Stargazer X', 'Stargazer X')">
+                <img src="img/stargazerxfront.png" alt="Car 10">
+                <h3>Stargazer X</h3>
+                <p>MPV dengan desain futuristik, ruang kabin luas, dan fitur canggih, menawarkan kenyamanan maksimal untuk keluarga yang siap berpetualang.</p>
+                <p class="price">Rp 345.150.000</p>
+                <a href="https://wa.me/+6282291331505" class="btn">Saya Tertarik</a>
+            </div>
+
+            <div class="product-card" style="animation-delay: 2.2s;"
+                onclick="redirectToDetail('Stargazer', 'Stargazer')">
+                <img src="img/stargazerfront.png" alt="Car 11">
+                <h3>Stargazer</h3>
+                <p>MPV yang memberikan kenyamanan serta kemudahan bagi keluarga dalam setiap perjalanan, baik jarak dekat maupun jauh.</p>
+                <p class="price">Rp 256.600.000</p>
+                <a href="https://wa.me/+6282291331505" class="btn">Saya Tertarik</a>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <script>
+        function redirectToDetail(name, carType) {
+            window.location.href = `product-detail.html?name=${encodeURIComponent(name)}&carType=${encodeURIComponent(carType)}`;
+        }
+
+        function toggleMenu() {
+            var mobileNav = document.getElementById("mobileNav");
+            if (mobileNav.style.display === "flex") {
+                mobileNav.style.display = "none";
+            } else {
+                mobileNav.style.display = "flex";
+            }
+        }
+    </script>
+
+<footer style="background-color: #2a2f37; color: #dee5ec; padding: 20px 0; text-align: center; font-family: Arial, sans-serif;">
+    <div style="max-width: 1200px; margin: auto; padding: 0 20px;">
+        <h2 style="color: #dee5ec; margin-bottom: 10px;">Dywane Hyundai</h2>
+        <p style="margin: 0; font-size: 14px; color: #7e8790;">Memberikan penawaran terbaik untuk mobil Hyundai impian Anda</p>
+
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; margin-top: 20px; color: #dee5ec;">
+            <div style="flex: 1; min-width: 200px; margin: 10px 0;">
+                <h3 style="color: #dee5ec; font-size: 16px; border-bottom: 2px solid #374a67; padding-bottom: 5px; display: inline-block;">Kontak Saya</h3>
+                <p style="margin: 5px 0; color: #7e8790;">Email: <a href="mailto:dealerxyz@email.com" style="color: #dee5ec; text-decoration: none;">dywanehyundai@email.com</a></p>
+                <p style="margin: 5px 0; color: #7e8790;">No. Telp/WhatsApp: <a href="https://wa.me/+6282291331505" style="color: #dee5ec; text-decoration: none;">+62 822 9133 1505</a></p>
+            </div>
+
+            <div style="flex: 1; min-width: 200px; margin: 10px 0;">
+                <h3 style="color: #dee5ec; font-size: 16px; border-bottom: 2px solid #374a67; padding-bottom: 5px; display: inline-block;">Lokasi</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+                    <!-- Cabang Kutisari -->
+                    <div style="flex: 1; min-width: 200px;">
+                        <p style="margin: 5px 0;">
+                            <a style="color: #dee5ec; text-decoration: none; margin: 0 5px;">Jl. Kutisari 10, Surabaya</a>
+                        </p>
+                        <p style="margin: 5px 0; color: #7e8790;">Senin - Jumat: 08.30 - 17.00</p>
+                        <p style="margin: 5px 0; color: #7e8790;">Sabtu: 08.30 - 15.00</p>
+                    </div>
+            
+                    <!-- Cabang Galaxy Mall -->
+                    <div style="flex: 1; min-width: 200px;">
+                        <p style="margin: 5px 0;">
+                            <a style="color: #dee5ec; text-decoration: none; margin: 0 5px;">Galaxy Mall 3, G-342 Surabaya</a>
+                        </p>
+                        <p style="margin: 5px 0; color: #7e8790;">Senin - Minggu: 08.00 - 21.30</p>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div style="flex: 1; min-width: 200px; margin: 10px 0;">
+                <h3 style="color: #dee5ec; font-size: 16px; border-bottom: 2px solid #374a67; padding-bottom: 5px; display: inline-block;">Sosial Media</h3>
+                <p style="margin: 5px 0;">
+                    <a href="https://www.instagram.com/dywanehyundai?igsh=bnJjNTI1ZThzOHB6" style="color: #dee5ec; text-decoration: none; margin: 0 5px;">Instagram</a>
+                </p>
+            </div>
+        </div>
+
+        <hr style="border-color: #374a67; margin: 20px 0;">
+        
+        <p style="font-size: 12px; color: #7e8790;">&copy; 2025 Dywane. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>
