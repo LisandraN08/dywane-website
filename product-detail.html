@@ -16,19 +16,34 @@
 
         /* Back button */
         .back-button {
-            position:relative;
-            margin-top: 20px;
-            margin-left: 50px;
-            margin-bottom: 20px;
-            font-size: 16px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%; /* Jika ingin lebar penuh */
+            background: black; /* Pastikan tetap terlihat */
+            padding: 10px 50px;
+            z-index: 1000; /* Supaya berada di atas elemen lain */
         }
         .back-button a {
+            position: relative;
             text-decoration: none;
-            color: black;
+            color: white;
             font-weight: bold;
         }
-        .back-button a:hover {
-            color: #374a67;
+
+        .back-button a::after {
+            content: '';
+            position: absolute;
+            bottom: 0; /* Posisi garis di bawah teks */
+            left: 0;
+            width: 0;
+            height: 2px; /* Ketebalan garis */
+            background-color: white;
+            transition: width 0.3s ease; /* Animasi untuk lebar garis */
+        }
+
+        .back-button a:hover::after {
+            width: 100%; /* Garis melebar saat hover */
         }
 
         /* Product details header */
@@ -239,8 +254,12 @@
             }
 
             .back-button {
-                margin-left: 13px;
                 font-size: 16px;
+                padding-left: 26px;
+            }
+
+            #product-name-container {
+                margin-top: 30px;
             }
 
         }
@@ -339,10 +358,11 @@
 
         <!-- Color Options -->
         <section id="color-container">
+            <img id="selected-color-image" src="" alt="Selected Car Color" style="width: 100%; max-width: 400px; display: block; margin: auto;">
             <h3>Warna Exterior</h3>
-            <p id="selected-color-name"></p> <!-- Warna default -->
+            <p id="selected-color-name"></p>
             <div id="color-selection"></div>
-        </section>
+        </section>        
 
         <!-- Price Table -->
         <section id="price-table">
@@ -629,9 +649,18 @@
     
             // BlueLink Visibility
             const blueLinkContainer = document.getElementById("bluelink-container");
+            const supportedCars = ["Palisade", "Ioniq 6", "Ioniq 5", "Santa Fe", "Kona", "Facelift Creta", "Creta", "Stargazer X", "Stargazer"];
+
             if (blueLinkContainer) {
-                blueLinkContainer.style.visibility = carType === "Palisade" || "Ioniq 6" || "Ioniq 6" || "Ioniq 5" || "Santa Fe" || "Kona" || "Facelift Creta" || "Creta" || "Stargazer X" || "Stargazer" ? "visible" : "hidden";
+                if (supportedCars.includes(carType)) {
+                    blueLinkContainer.style.display = "block";
+                    blueLinkContainer.style.visibility = "visible";
+                } else {
+                    blueLinkContainer.style.display = "none";
+                }
             }
+
+
     
             // Load fitur berdasarkan carType
             if (carFeatures[carType]) {
@@ -782,111 +811,119 @@
     
             // Warna-warna untuk mobil
             const colorOptions = carType === 'Palisade' ? [
-                { color: "#f3f3f3", name: "Creamy White Pearl" },
-                { color: "#555756", name: "Graphite Gray Metallic" },
-                { color: "#2d3548", name: "Moonlight Blue Pearl" },
-                { color: "#a7a9a8", name: "Shimmering Silver Metallic" },
-                { color: "#1b1a1f", name: "Abyss Black Pearl" }
+                { topColor: "#f3f3f3", bottomColor: "#f3f3f3", name: "Creamy White Pearl", image: "img/palisadecwp.jpg" },
+                { topColor: "#555756", bottomColor: "#555756", name: "Graphite Gray Metallic", image: "img/palisadeggm.jpg" },
+                { topColor: "#2d3548", bottomColor: "#2d3548", name: "Moonlight Blue Pearl", image: "img/palisadembp.jpg" },
+                { topColor: "#a7a9a8", bottomColor: "#a7a9a8", name: "Shimmering Silver Metallic", image: "img/palisadessm.jpg" },
+                { topColor: "#1b1a1f", bottomColor: "#1b1a1f", name: "Abyss Black Pearl", image: "img/palisadeabp.jpg" }
             ] : carType === 'Ioniq 6' ? [
-                { color: "#999790", name: "Gravity Gold Matte" },
-                { color: "#2c393d", name: "Nocturne Gray Matte" },
-                { color: "#05080a", name: "Abyss Black Pearl" },
-                { color: "#eaefe7", name: "Serenity White Pearl" },
-                { color: "#070e19", name: "Biophilic Blue Pearl" }
+                { topColor: "#999790", bottomColor: "#999790", name: "Gravity Gold Matte", image: "img/ioniq6ggm.png" },
+                { topColor: "#2c393d", bottomColor: "#2c393d", name: "Nocturne Gray Matte", image: "img/ioniq6ngm.png" },
+                { topColor: "#05080a", bottomColor: "#05080a", name: "Abyss Black Pearl", image: "img/ioniq6abp.png" },
+                { topColor: "#eaefe7", bottomColor: "#eaefe7", name: "Serenity White Pearl", image: "img/ioniq6swp.png" },
+                { topColor: "#070e19", bottomColor: "#070e19", name: "Biophilic Blue Pearl", image: "img/ioniq6bbp.png" }
             ] : carType === 'Staria' ? [
-                { color: "#e1e0e5", name: "Creamy White" },
-                { color: "#202022", name: "Abyss Black Pearl" },
-                { color: "#35353a", name: "Graphite Gray Metallic" },
-                { color: "#787677", name: "Shimmering Silver Metallic" }
+                { topColor: "#e1e0e5", bottomColor: "#e1e0e5", name: "Creamy White", image: "img/stariacw.png" },
+                { topColor: "#202022", bottomColor: "#202022", name: "Abyss Black Pearl", image: "img/stariaabp.png" },
+                { topColor: "#35353a", bottomColor: "#35353a", name: "Graphite Gray Metallic", image: "img/stariaggm.png" },
+                { topColor: "#787677", bottomColor: "#787677", name: "Shimmering Silver Metallic", image: "img/stariassm.png" }
             ] : carType === 'Ioniq 5' ? [
-                { color: "#10100e", name: "Midnight Black Pearl" },
-                { color: "#86817e", name: "Magnetic Silver Metalic" },
-                { color: "#434240", name: "Titan Gray Metalic" },
-                { color: "#d3d2d6", name: "Optic White" },
-                { color: "#898582", name: "Gravity Gold Matte" }
+                { topColor: "#10100e", bottomColor: "#10100e", name: "Midnight Black Pearl", image: "img/ioniq5mbp.png" },
+                { topColor: "#86817e", bottomColor: "#86817e", name: "Magnetic Silver Metallic", image: "img/ioniq5msm.png" },
+                { topColor: "#434240", bottomColor: "#434240", name: "Titan Gray Metallic", image: "img/ioniq5tgm.png" },
+                { topColor: "#d3d2d6", bottomColor: "#d3d2d6", name: "Optic White", image: "img/ioniq5ow.png" },
+                { topColor: "#898582", bottomColor: "#898582", name: "Gravity Gold Matte", image: "img/ioniq5ggm.png" }
             ] : carType === 'Santa Fe' ? [
-                { color: "#f2f4f3", name: "Creamy White Pearl" },
-                { color: "#19191c", name: "Midnight Black Matte" },
-                { color: "#414548", name: "Titan Gray Metallic" },
-                { color: "#eff1ea", name: "Optic White Matte" },
-                { color: "#0f0f11", name: "Midnight Black Pearl" }
+                { topColor: "#f2f4f3", bottomColor: "#f2f4f3", name: "Creamy White Pearl", image: "img/santafecwp.png" },
+                { topColor: "#19191c", bottomColor: "#19191c", name: "Midnight Black Matte", image: "img/santafembm.png" },
+                { topColor: "#414548", bottomColor: "#414548", name: "Titan Gray Metallic", image: "img/santafetgm.png" },
+                { topColor: "#eff1ea", bottomColor: "#eff1ea", name: "Optic White Matte", image: "img/santafeowm.png" },
+                { topColor: "#0f0f11", bottomColor: "#0f0f11", name: "Midnight Black Pearl", image: "img/santafembp.png" }
             ] : carType === 'Kona' ? [
-                { color: "#04070d", name: "Midnight Black Pearl" },
-                { color: "#1f2024", name: "Titan Gray Metallic" },
-                { color: "#4b4b55", name: "Magnetic Silver Metallic" },
-                { color: "#c7c8ca", name: "Creamy White Pearl" },               
-                { color: "#8a8a8a", name: "Optic White Matte" },
-                { color: "#b71516", name: "Dragon Red Pearl" }
+                { topColor: "#04070d", bottomColor: "#04070d", name: "Midnight Black Pearl", image: "img/konambp.png" },
+                { topColor: "#1f2024", bottomColor: "#1f2024", name: "Titan Gray Metallic", image: "img/konatgm.png" },
+                { topColor: "#4b4b55", bottomColor: "#4b4b55", name: "Magnetic Silver Metallic", image: "img/konamsm.png" },
+                { topColor: "#c7c8ca", bottomColor: "#c7c8ca", name: "Creamy White Pearl", image: "img/konacwp.png" },
+                { topColor: "#8a8a8a", bottomColor: "#8a8a8a", name: "Optic White Matte", image: "img/konaowm.png" },
+                { topColor: "#b71516", bottomColor: "#b71516", name: "Dragon Red Pearl", image: "img/konadrp.png" }
             ] : carType === 'Tucson' ? [
-                { color: "#e5e5e3", name: "Creamy White Pearl" },
-                { color: "#0a0a0a", name: "Phantom Black Pearl" },
-                { color: "#6a0d01", name: "Ultimate Red Metallic" },
-                { color: "#3d3d3b", name: "Titan Gray Metallic" },
-                { color: "#383c3b", name: "Pine Green Matte" }
+                { topColor: "#e5e5e3", bottomColor: "#e5e5e3", name: "Creamy White Pearl", image: "img/tucsoncwp.png" },
+                { topColor: "#0a0a0a", bottomColor: "#0a0a0a", name: "Phantom Black Pearl", image: "img/tucsonpbp.png" },
+                { topColor: "#6a0d01", bottomColor: "#6a0d01", name: "Ultimate Red Metallic", image: "img/tucsonurm.png" },
+                { topColor: "#3d3d3b", bottomColor: "#3d3d3b", name: "Titan Gray Metallic", image: "img/tucsontgm.png" },
+                { topColor: "#383c3b", bottomColor: "#383c3b", name: "Pine Green Matte", image: "img/tucsonpgm.png" }
             ] : carType === 'Facelift Creta' ? [
-                { color: "#252628", name: "Midnight Black Matte" },
-                { color: "#9c9da1", name: "Magnetic Silver Matte" },
-                { color: "#333835", name: "Shadow Gray Metallic With Black Roof" },
-                { color: "#951728", name: "Dragon Red Pearl With Black Roof" },
-                { color: "#ecf1f7", name: "Creamy White Pearl With Black Roof" }
+                { topColor: "#252628", bottomColor: "#252628", name: "Midnight Black Matte", image: "img/faceliftcretambm.png" },
+                { topColor: "#9c9da1", bottomColor: "#9c9da1", name: "Magnetic Silver Matte", image: "img/faceliftcretamsm.png" },
+                { topColor: "#000000", bottomColor: "#333835", name: "Shadow Gray Metallic With Black Roof", image: "img/faceliftcretasgmwbr.png" },
+                { topColor: "#000000", bottomColor: "#951728", name: "Dragon Red Pearl With Black Roof", image: "img/faceliftcretadrpwbr.png" },
+                { topColor: "#000000", bottomColor: "#ecf1f7", name: "Creamy White Pearl With Black Roof", image: "img/faceliftcretacwpwbr.png" }
             ] : carType === 'Creta' ? [
-                { color: "#292d30", name: "Titan Gray Metallic" },
-                { color: "#030406", name: "Midnight Black Pearl" },
-                { color: "#bebfc3", name: "Magnetic Silver Metallic" },
-                { color: "#951728", name: "Dragon Red Pearl" },
-                { color: "#ecf1f7", name: "Creamy White Pearl" },
-                { color: "#bebfc3", name: "Magnetic Silver Metallic With Black Roof" },
-                { color: "#951728", name: "Dragon Red Pearl With Black Roof" },
-                { color: "#ecf1f7", name: "Creamy White Pearl With Black Roof" }
+                { topColor: "#000000", bottomColor: "#ecf1f7", name: "Creamy White Pearl With Black Roof", image: "img/cretacwpwbr.jpg" },
+                { topColor: "#000000", bottomColor: "#951728", name: "Dragon Red Pearl With Black Roof", image: "img/cretadrpwbr.jpg" },
+                { topColor: "#000000", bottomColor: "#bebfc3", name: "Magnetic Silver Metallic With Black Roof", image: "img/cretamsmwbr.jpg" },
+                { topColor: "#292d30", bottomColor: "#292d30", name: "Titan Gray Metallic", image: "img/cretatgm.jpg" },
+                { topColor: "#030406", bottomColor: "#030406", name: "Midnight Black Pearl", image: "img/cretambp.jpg" },
+                { topColor: "#bebfc3", bottomColor: "#bebfc3", name: "Magnetic Silver Metallic", image: "img/cretamsm.jpg" },
+                { topColor: "#951728", bottomColor: "#951728", name: "Dragon Red Pearl", image: "img/cretadrp.jpg" },
+                { topColor: "#ecf1f7", bottomColor: "#ecf1f7", name: "Creamy White Pearl", image: "img/cretacwp.jpg" }
             ] : carType === 'Stargazer X' ? [
-                { color: "#951728", name: "Dragon Red Pearl" },
-                { color: "#bebfc3", name: "Magnetic Silver Metallic" },
-                { color: "#ecf1f7", name: "Creamy White Pearl" },
-                { color: "#030406", name: "Midnight Black Pearl" },
-                { color: "#292d30", name: "Titan Gray Metallic" }
+                { topColor: "#951728", bottomColor: "#951728", name: "Dragon Red Pearl", image: "img/stargazerxdrp.png" },
+                { topColor: "#bebfc3", bottomColor: "#bebfc3", name: "Magnetic Silver Metallic", image: "img/stargazerxmsm.png" },
+                { topColor: "#ecf1f7", bottomColor: "#ecf1f7", name: "Creamy White Pearl", image: "img/stargazerxcwp.png" },
+                { topColor: "#030406", bottomColor: "#030406", name: "Midnight Black Pearl", image: "img/stargazerxmbp.png" },
+                { topColor: "#292d30", bottomColor: "#292d30", name: "Titan Gray Metallic", image: "img/stargazerxtgm.png" }
             ] : carType === 'Stargazer' ? [
-                { color: "#bebfc3", name: "Magnetic Silver Metallic" },
-                { color: "#ecf1f7", name: "Creamy White Pearl" },
-                { color: "#030406", name: "Midnight Black Pearl" },
-                { color: "#292d30", name: "Titan Gray Metallic" },
-                { color: "#951728", name: "Dragon Red Pearl" }
+                { topColor: "#bebfc3", bottomColor: "#bebfc3", name: "Magnetic Silver Metallic", image: "img/stargazermsm.png" },
+                { topColor: "#ecf1f7", bottomColor: "#ecf1f7", name: "Creamy White Pearl", image: "img/stargazercwp.png" },
+                { topColor: "#030406", bottomColor: "#030406", name: "Midnight Black Pearl", image: "img/stargazermbp.png" },
+                { topColor: "#292d30", bottomColor: "#292d30", name: "Titan Gray Metallic", image: "img/stargazertgm.png" },
+                { topColor: "#951728", bottomColor: "#951728", name: "Dragon Red Pearl", image: "img/stargazerdrp.png" }
             ] : [
-                { color: "#00FF00", name: "Hijau" },
-                { color: "#0000FF", name: "Biru" }
+                { topColor: "#00FF00", bottomColor: "#00FF00", name: "Hijau" },
+                { topColor: "#0000FF", bottomColor: "#0000FF", name: "Biru" }
             ];
+
     
             const colorSelection = document.getElementById("color-selection");
             const colorName = document.getElementById("selected-color-name");
+            const colorImage = document.getElementById("selected-color-image");
+
+            // Set gambar dan nama warna default
             colorName.textContent = colorOptions[0].name;
+            colorImage.src = colorOptions[0].image;
     
-            if (colorSelection && colorName) {
+            if (colorSelection && colorName && colorImage) {
                 colorSelection.innerHTML = ""; // Reset pilihan warna
-    
+
                 colorOptions.forEach(option => {
                     const colorBox = document.createElement("div");
                     colorBox.classList.add("color-box");
-                    colorBox.style.backgroundColor = option.color;
-    
+
+                    // Gunakan background dengan dua warna tanpa gradasi
+                    colorBox.style.background = `linear-gradient(to bottom, ${option.topColor} 30%, ${option.bottomColor} 30%)`;
+
                     const checkmark = document.createElement("div");
                     checkmark.classList.add("checkmark");
                     checkmark.innerHTML = "&#10004;"; // Centang ✔
-    
+
                     colorBox.appendChild(checkmark);
                     colorSelection.appendChild(colorBox);
-    
+
                     colorBox.onclick = function() {
                         document.querySelectorAll('.color-box').forEach(box => box.classList.remove('selected'));
                         colorBox.classList.add('selected');
                         colorName.innerText = option.name; // Ubah teks nama warna saat dipilih
+                        colorImage.src = option.image; // Ubah gambar sesuai warna
                     };
                 });
-    
+
                 // Pilih warna pertama sebagai default
                 const firstColor = document.querySelector('.color-box');
                 if (firstColor) firstColor.classList.add('selected');
             }
 
-                // Ambil elemen h1 dan p
+            // Ambil elemen h1 dan p
             const carTitle = document.getElementById('car-title');
             const carDescription = document.getElementById('car-description');
 
@@ -935,7 +972,7 @@
             // Menambahkan event listener untuk tombol
             whatsappButton.addEventListener('click', function() {
                 // Pesan yang ingin dikirim melalui WhatsApp
-                const message = `Saya tertarik dan ingin mendapatkan info lebih lanjut tentang ${carType}`;
+                const message = `Saya tertarik dan ingin mendapatkan info lebih lanjut tentang Hyundai ${carType}`;
                 
                 // URL WhatsApp dengan pesan
                 const whatsappUrl = `https://wa.me/+6282291331505/?text=${encodeURIComponent(message)}`;
@@ -957,7 +994,7 @@
         <div style="display: flex; flex-wrap: wrap; justify-content: space-between; margin-top: 20px; color: #dee5ec;">
             <div style="flex: 1; min-width: 200px; margin: 10px 0;">
                 <h3 style="color: #dee5ec; font-size: 16px; border-bottom: 2px solid #374a67; padding-bottom: 5px; display: inline-block;">Kontak Saya</h3>
-                <p style="margin: 5px 0; color: #7e8790;">Email: <a href="mailto:dealerxyz@email.com" style="color: #dee5ec; text-decoration: none;">dywanehyundai@email.com</a></p>
+                <p style="margin: 5px 0; color: #7e8790;">Email: <a href="mailto:dealerxyz@email.com" style="color: #dee5ec; text-decoration: none;">dywanehyundai@gmail.com</a></p>
                 <p style="margin: 5px 0; color: #7e8790;">No. Telp/WhatsApp: <a href="https://wa.me/+6282291331505" style="color: #dee5ec; text-decoration: none;">+62 822 9133 1505</a></p>
             </div>
 

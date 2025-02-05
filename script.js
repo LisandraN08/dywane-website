@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             title: "Hyundai IONIQ 6",
-            description: "sedan listrik futuristik dengan desain aerodinamis, teknologi canggih, dan jangkauan baterai yang impresif untuk pengalaman berkendara yang efisien dan ramah lingkungan.",
+            description: "Sedan listrik futuristik dengan desain aerodinamis, teknologi canggih, dan jangkauan baterai yang impresif untuk pengalaman berkendara yang efisien dan ramah lingkungan.",
             link: "products.html"
         },
         {
