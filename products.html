@@ -48,6 +48,7 @@
             opacity: 0;
             animation: fadeInUp 1s forwards;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
         }
 
         .product-card:hover {
@@ -56,11 +57,11 @@
         }
 
         .product-card img {
-            width: 100%; /* Ensures the image takes up the full width of the container */
-            height: auto; /* Maintains the aspect ratio of the image */
-            object-fit: cover; /* Ensures the image covers the container without distortion */
+            width: auto; /* Ensures the image takes up the full width of the container */
+            height: 170px; /* Maintains the aspect ratio of the image */
             border-radius: 8px; 
             margin-bottom: 15px;
+            text-align: center;
         }
 
         .product-card h3 {
@@ -122,14 +123,13 @@
             }
 
             .product-card {
-                width: 90%; 
-                height: 108%;
+                width: 100%; 
+                height: 100%;
                 margin: 0 auto; 
             }
 
             .product-card img{
                 width: 80%;
-                margin-left: 50px;
             }
 
             .hamburger{
@@ -173,72 +173,74 @@
                 <img src="img/palisadefront.png" alt="Car 1">
                 <h3>Palisade</h3>
                 <p>SUV besar dan mewah yang dirancang untuk keluarga, menawarkan fitur canggih, performa V6 yang kuat, dan interior yang nyaman serta berteknologi tinggi.</p>
-                <p class="price">Mulai Rp 1.074.200.000</p>
+                <p class="price">Mulai Rp 1.098.700.000</p>
                 <a href="https://wa.me/+6282291331505/?text=Saya tertarik dengan Hyundai Palisade" class="btn">Saya Tertarik</a>
             </div>
        
-
-            <div class="product-card" style="animation-delay: 0.4s;"
-                onclick="redirectToDetail('Ioniq 6', 'Ioniq 6')">
-                <img src="img/ioniq6front.png" alt="Car 2">
-                <h3>Ioniq 6</h3>
-                <p>Mobil listrik sedan yang mengusung desain futuristik dan teknologi canggih untuk memberikan pengalaman berkendara ramah lingkungan dan penuh kenyamanan.</p>
-                <p class="price">Mulai Rp 1.218.600.000</p>
-                <a href="https://wa.me/+6282291331505/?text=Saya tertarik dengan Hyundai Ioniq 6" class="btn">Saya Tertarik</a>
-            </div>
-
             <div class="product-card" style="animation-delay: 0.6s;"
                 onclick="redirectToDetail('Staria', 'Staria')">
-                <img src="img/stariafront.png" alt="Car 3">
+                <img src="img/stariafront.png" alt="Car 2">
                 <h3>Staria</h3>
                 <p>MPV premium dengan desain futuristik, interior luas, dan fitur canggih untuk kenyamanan serta kemewahan maksimal.</p>
                 <p class="price">Mulai Rp 947.700.000</p>
                 <a href="https://wa.me/+6282291331505/?text=Saya tertarik dengan Hyundai Staria" class="btn">Saya Tertarik</a>
             </div>
 
+
+            <div class="product-card" style="animation-delay: 0.4s;"
+                onclick="redirectToDetail('The New Santa Fe', 'The New Santa Fe')">
+                <img src="img/santafefront.png" alt="Car 3">
+                <h3>The New Santa Fe</h3>
+                <p>SUV dengan kenyamanan premium ini siap menemani setiap petualangan dengan keamanan dan kenyamanan maksimal di setiap perjalanan.</p>
+                <p class="price">Mulai Rp 732.800.000</p>
+                <a href="https://wa.me/+6282291331505/?text=Saya tertarik dengan Hyundai The New Santa Fe" class="btn">Saya Tertarik</a>
+            </div>
+
+
             <div class="product-card" style="animation-delay: 0.8s;"
                 onclick="redirectToDetail('Ioniq 5', 'Ioniq 5')">
                 <img src="img/ioniq5front.png" alt="Car 4">
                 <h3>Ioniq 5</h3>
                 <p>Mobil listrik dengan desain aerodinamis dan teknologi canggih, memberikan pengalaman berkendara yang ramah lingkungan.</p>
-                <p class="price">Mulai Rp 908.500.000</p>
+                <p class="price">Mulai Rp 930.600.000</p>
                 <a href="https://wa.me/+6282291331505/?text=Saya tertarik dengan Hyundai Ioniq 5" class="btn">Saya Tertarik</a>
             </div>
 
-            <div class="product-card" style="animation-delay: 1s;"
-                onclick="redirectToDetail('Santa Fe', 'Santa Fe')">
-                <img src="img/santafefront.png" alt="Car 5">
-                <h3>Santa Fe</h3>
-                <p>SUV dengan kenyamanan premium ini siap menemani setiap petualangan dengan keamanan dan kenyamanan maksimal di setiap perjalanan.</p>
-                <p class="price">Mulai Rp 717.000.000</p>
-                <a href="https://wa.me/+6282291331505/?text=Saya tertarik dengan Hyundai Santa Fe" class="btn">Saya Tertarik</a>
+            <div class="product-card" style="animation-delay: 1.4s;"
+                onclick="redirectToDetail('The New Tucson', 'The New Tucson')">
+                <img src="img/tucsonfront.png" alt="Car 5">
+                <h3>The New Tucson</h3>
+                <p>SUV yang memberikan kenyamanan dan keamanan terbaik untuk setiap perjalanan, baik di jalanan perkotaan maupun petualangan di luar kota.</p>
+                <p class="price">Mulai Rp 661.000.000</p>
+                <a href="https://wa.me/+6282291331505/?text=Saya tertarik dengan Hyundai The New Tucson" class="btn">Saya Tertarik</a>
             </div>
 
             <div class="product-card" style="animation-delay: 1.2s;"
-                onclick="redirectToDetail('Kona', 'Kona')">
+                onclick="redirectToDetail('The New Kona', 'The New Kona')">
                 <img src="img/konafront.png" alt="Car 6">
-                <h3>Kona</h3>
+                <h3>The New Kona</h3>
                 <p>Crossover yang menghadirkan performa tangguh dan fitur canggih, ideal untuk petualangan di perkotaan maupun alam terbuka.</p>
-                <p class="price">Mulai Rp 556.800.000</p>
-                <a href="https://wa.me/+6282291331505/?text=Saya tertarik dengan Hyundai Kona" class="btn">Saya Tertarik</a>
+                <p class="price">Mulai Rp 570.250.000</p>
+                <a href="https://wa.me/+6282291331505/?text=Saya tertarik dengan Hyundai The New Kona" class="btn">Saya Tertarik</a>
             </div>
 
-            <div class="product-card" style="animation-delay: 1.4s;"
-                onclick="redirectToDetail('Tucson', 'Tucson')">
-                <img src="img/tucsonfront.png" alt="Car 7">
-                <h3>Tucson</h3>
-                <p>SUV yang memberikan kenyamanan dan keamanan terbaik untuk setiap perjalanan, baik di jalanan perkotaan maupun petualangan di luar kota.</p>
-                <p class="price">Mulai Rp 646.850.000</p>
-                <a href="https://wa.me/+6282291331505/?text=Saya tertarik dengan Hyundai Tucson" class="btn">Saya Tertarik</a>
+            <div class="product-card" style="animation-delay: 1s;"
+                onclick="redirectToDetail('The New Venue', 'The New Venue')">
+                <img src="img/venuefront.png" alt="Car 7">
+                <h3>The New Venue</h3>
+                <p>SUV subkompak dengan desain modern, fitur teknologi canggih, dan efisiensi bahan bakar yang baik.</p>
+                <p class="price">Mulai Rp 343.800.000</p>
+                <a href="https://wa.me/+6282291331505/?text=Saya tertarik dengan Hyundai The New Venue" class="btn">Saya Tertarik</a>
             </div>
+
 
             <div class="product-card" style="animation-delay: 1.6s;"
-                onclick="redirectToDetail('Facelift Creta', 'Facelift Creta')">
+                onclick="redirectToDetail('The New Creta', 'The New Creta')">
                 <img src="img/faceliftcretafront.png" alt="Car 8">
-                <h3>Facelift Creta</h3>
-                <p>Hyundai Facelift Creta hadir dengan desain modern, fitur canggih, dan performa handal, sempurna untuk menjelajahi setiap sudut kota maupun perjalanan jauh.</p>
+                <h3>The New Creta</h3>
+                <p>Hyundai The New Creta hadir dengan desain modern, fitur canggih, dan performa handal, sempurna untuk menjelajahi setiap sudut kota maupun perjalanan jauh.</p>
                 <p class="price">Mulai Rp 305.700.000</p>
-                <a href="https://wa.me/+6282291331505/?text=Saya tertarik dengan Hyundai Facelift Creta" class="btn">Saya Tertarik</a>
+                <a href="https://wa.me/+6282291331505/?text=Saya tertarik dengan Hyundai The New Creta" class="btn">Saya Tertarik</a>
             </div>
 
             <div class="product-card" style="animation-delay: 1.8s;"
@@ -255,7 +257,7 @@
                 <img src="img/stargazerxfront.png" alt="Car 10">
                 <h3>Stargazer X</h3>
                 <p>MPV dengan desain futuristik, ruang kabin luas, dan fitur canggih, menawarkan kenyamanan maksimal untuk keluarga yang siap berpetualang.</p>
-                <p class="price">Mulai Rp 345.150.000</p>
+                <p class="price">Mulai Rp 352.750.000</p>
                 <a href="https://wa.me/+6282291331505/?text=Saya tertarik dengan Hyundai Stargazer X" class="btn">Saya Tertarik</a>
             </div>
 
@@ -264,7 +266,7 @@
                 <img src="img/stargazerfront.png" alt="Car 11">
                 <h3>Stargazer</h3>
                 <p>MPV yang memberikan kenyamanan serta kemudahan bagi keluarga dalam setiap perjalanan, baik jarak dekat maupun jauh.</p>
-                <p class="price">Mulai Rp 256.600.000</p>
+                <p class="price">Mulai Rp 263.200.000</p>
                 <a href="https://wa.me/+6282291331505/?text=Saya tertarik dengan Hyundai Stargazer" class="btn">Saya Tertarik</a>
             </div>
 
