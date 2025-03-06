@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://hyundaisurabayaconsultant.com/</loc>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://hyundaisurabayaconsultant.com/products/</loc>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://hyundaisurabayaconsultant.com/contact/</loc>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Detail Produk -->
+    <url>
+        <loc>https://hyundaisurabayaconsultant.com/products/palisade/</loc>
+    </url>
+    <url>
+        <loc>https://hyundaisurabayaconsultant.com/products/staria/</loc>
+    </url>
+    <url>
+        <loc>https://hyundaisurabayaconsultant.com/products/the-new-santa-fe/</loc>
+    </url>
+    <url>
+        <loc>https://hyundaisurabayaconsultant.com/products/ioniq-5/</loc>
+    </url>
+    <url>
+        <loc>https://hyundaisurabayaconsultant.com/products/the-new-tucson/</loc>
+    </url>
+    <url>
+        <loc>https://hyundaisurabayaconsultant.com/products/the-new-kona/</loc>
+    </url>
+    <url>
+        <loc>https://hyundaisurabayaconsultant.com/products/the-new-venue/</loc>
+    </url>
+    <url>
+        <loc>https://hyundaisurabayaconsultant.com/products/the-new-creta/</loc>
+    </url>
+    <url>
+        <loc>https://hyundaisurabayaconsultant.com/products/creta/</loc>
+    </url>
+    <url>
+        <loc>https://hyundaisurabayaconsultant.com/products/stargazer-x/</loc>
+    </url>
+    <url>
+        <loc>https://hyundaisurabayaconsultant.com/products/stargazer/</loc>
+    </url>
+</urlset>

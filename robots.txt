@@ -1,0 +1,24 @@
+User-agent: *
+Disallow: /_koneksi.php
+Disallow: /_login.php
+Disallow: /_register.php
+Disallow: /about.html
+Disallow: /bg2.jpg
+Disallow: /logo.png
+Disallow: /wuling_bg.png
+
+Allow: /products/
+Allow: /contact/
+Allow: /products/palisade/
+Allow: /products/staria/
+Allow: /products/the-new-santa-fe/
+Allow: /products/ioniq-5/
+Allow: /products/the-new-tucson/
+Allow: /products/the-new-kona/
+Allow: /products/the-new-venue/
+Allow: /products/the-new-creta/
+Allow: /products/creta/
+Allow: /products/stargazer-x/
+Allow: /products/stargazer/
+
+Sitemap: https://hyundaisurabayaconsultant.com/sitemap.xml
