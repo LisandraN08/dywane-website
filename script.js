@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
             link: "products.html"
         },
         {
-            title: "Hyundai IONIQ 6",
-            description: "Sedan listrik futuristik dengan desain aerodinamis, teknologi canggih, dan jangkauan baterai yang impresif untuk pengalaman berkendara yang efisien dan ramah lingkungan.",
+            title: "Hyundai IONIQ 5",
+            description: "Mobil listrik dengan desain aerodinamis dan teknologi canggih, memberikan pengalaman berkendara yang ramah lingkungan.",
             link: "products.html"
         },
         {
@@ -75,6 +75,23 @@ document.addEventListener('DOMContentLoaded', () => {
             caption.style.transform = '';
         }
     }
+
+    function adjustFloatingButtons() {
+        const floatingContainer = document.querySelector(".floating-container");
+        const footer = document.querySelector("footer");
+        const footerTop = footer.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        if (footerTop < windowHeight - 20) {
+            floatingContainer.style.bottom = `${windowHeight - footerTop + 20}px`;
+        } else {
+            floatingContainer.style.bottom = "20px";
+        }
+    }
+
+    window.addEventListener("scroll", adjustFloatingButtons);
+    window.addEventListener("resize", adjustFloatingButtons);
+    adjustFloatingButtons();
 
     setInterval(showNextSlide, 5000); 
 
