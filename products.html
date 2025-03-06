@@ -127,10 +127,10 @@
                 height: 100%;
                 margin: 0 auto; 
             }
-
+/* 
             .product-card img{
                 width: 80%;
-            }
+            } */
 
             .hamburger{
                 margin-left: 80px;
@@ -142,12 +142,6 @@
 <div class="floating-container">
     <a href="https://wa.me/+6282291331505" class="floating-button whatsapp" target="_blank">
         <i class="fa-brands fa-whatsapp"></i>
-    </a>
-    <a href="https://www.instagram.com/hyundaisurabayaconsultant?igsh=MW5seXJjMHl3OWxwZA==" class="floating-button instagram" target="_blank">
-        <i class="fa-brands fa-instagram"></i>
-    </a>
-    <a href="https://www.facebook.com/share/18Njavu7Us/" class="floating-button facebook" target="_blank">
-        <i class="fa-brands fa-facebook"></i>
     </a>
 </div>
 
@@ -178,7 +172,7 @@
         </div>
     </header>
     <div class="section">
-        <h2 style="padding-top: 100px; padding-bottom: 30px; font-size: 28px;">Produk</h2>
+        <h2 style="padding-top: 130px; padding-bottom: 30px; font-size: 28px;">Produk</h2>
         
         <div class="product-list">
             <div class="product-card" style="animation-delay: 0.2s;" 
@@ -292,6 +286,7 @@
         function redirectToDetail(name, carType) {
             window.location.href = `product-detail.html?name=${encodeURIComponent(name)}&carType=${encodeURIComponent(carType)}`;
         }
+        
 
         function toggleMenu() {
             var mobileNav = document.getElementById("mobileNav");
@@ -337,14 +332,16 @@
 
         <div class="footer-section">
             <h3>Sosial Media</h3>
-            <p><a href="https://www.instagram.com/hyundaisurabayaconsultant">Instagram: @hyundaisurabayaconsultant</a></p>
+            <p>
+                <a href="https://www.instagram.com/hyundaisurabayaconsultant">Instagram</a> | 
+                <a href="https://www.facebook.com/share/18Njavu7Us/">Facebook</a>
+            </p>
         </div>
     </div>
 
     <hr style="border-color: #374a67; margin: 20px 0;">
     <p class="copyright">&copy; 2025 Hyundai Surabaya Consultant. All rights reserved.</p>
 </footer>
-        
 
 </body>
 </html>
